@@ -1,85 +1,72 @@
 <template>
   <div>
     <div class="product_wrappers_one">
+      PRODUCT 1
       <div class="thumb">
         <nuxt-link :to="{ path: '/product/' + product.id }" class="image">
           <img
-            :src="getImageUrl(imageSrc ? imageSrc : product.images[0].src)"
-            :alt="product.title"
+              :alt="product.title"
+              :src="getImageUrl(product.images[0]?.src, product.images[0]?.image_id)"
           />
           <img
-            :src="getImageUrl(imageSrc ? imageSrc : product.images[1].src)"
-            :alt="product.title"
-            class="hover-image"
+              :alt="product.title"
+              :src="getImageUrl(product.images[1]?.src, product.images[1]?.image_id)"
+              class="hover-image"
           />
         </nuxt-link>
         <span class="badges">
-          <span class="new" v-if="product.new">new</span>
-          <span class="hot" v-else-if="product.hot">hot</span>
-          <span class="" v-else></span>
+          <span v-if="product.new" class="new">new</span>
+          <span v-else-if="product.hot" class="hot">hot</span>
+          <span v-else class=""></span>
         </span>
         <div class="actions">
           <button
-            @click="addToWishlist(product)"
-            class="action wishlist"
-            title="Wishlist"
+              class="action wishlist"
+              title="Wishlist"
+              @click="addToWishlist(product)"
           >
             <i class="far fa-heart"></i>
           </button>
-          <button
-            id="toggle-btn"
-            @click="toggleModal"
-            class="action quickview"
-            title="Quick view"
-          >
-            <i class="fas fa-expand"></i>
-          </button>
-          <button
-            @click="addToCompare(product)"
-            class="action compare"
-            title="Compare"
-          >
-            <i class="fas fa-exchange-alt"></i>
-          </button>
         </div>
         <button
-          @click="addToCart(product)"
-          class="add-to-cart offcanvas-toggle"
-          title="Add To Cart"
+            class="add-to-cart offcanvas-toggle"
+            title="Add To Cart"
+            @click="addToCart(product)"
         >
-         Sepete Ekle
+          Sepete Ekle
         </button>
       </div>
 
       <div class="content">
         <h5 class="title text-capitalize">
           <nuxt-link :to="{ path: '/product/' + product.id }">{{
-            product.title
-          }}</nuxt-link>
+              product.title
+            }}
+          </nuxt-link>
         </h5>
         <span class="price">
-          <span class="new" v-if="product.discount"
-            >${{ discountedPrice(product) }}</span
+          <span v-if="product.discount" class="new"
+          >${{ discountedPrice(product) }}</span
           >
-          <span class="new" v-else>${{ product.price }}</span>
+          <span v-else class="new">${{ product.price }}</span>
         </span>
       </div>
 
       <!-- Modal Area Start-->
       <div>
         <b-modal
-          ref="product-details-popup"
-          centered
-          hide-footer
-          title="Using Component Methods"
-          class="product_one_modal_top"
-          id="product_slider_one"
+            id="product_slider_one"
+            ref="product-details-popup"
+            centered
+            class="product_one_modal_top"
+            hide-footer
+            title="Using Component Methods"
         >
           <template #modal-header="{ close }">
             <button
-              type="button"
-              class="close close_modal_icon"
-              @click="close()"
+                class="close close_modal_icon"
+                type="button"
+                @click="close()"
             >
               <span aria-hidden="true"><i class="fas fa-times"></i></span>
             </button>
@@ -89,18 +76,18 @@
             <div class="row">
               <div class="col-lg-5 col-md-6 col-sm-12 col-12">
                 <div class="products_modal_sliders">
-                  <div v-swiper:mySwiper="swiperOption" ref="mySwiper">
+                  <div ref="mySwiper" v-swiper:mySwiper="swiperOption">
                     <div class="swiper-wrapper">
                       <div
-                        class="swiper-slide"
-                        v-for="(imag, index) in product.images"
-                        :key="index"
+                          v-for="(imag, index) in product.images"
+                          :key="index"
+                          class="swiper-slide"
                       >
                         <img
-                          :src="getImageUrl(imag.src)"
-                          :id="imag.image_id"
-                          class="img-fluid bg-img"
-                          alt="imag.alt"
+                            :id="imag.image_id"
+                            :src="getImageUrl(imag.src)"
+                            alt="imag.alt"
+                            class="img-fluid bg-img"
                         />
                       </div>
                     </div>
@@ -116,7 +103,6 @@
                     <i class="fas fa-star active"></i>
                     <i class="fas fa-star active"></i>
                     <i class="fas fa-star active"></i>
-                    <span>(5 Customer Review)</span>
                   </div>
                   <div v-else-if="product.rating == 4" class="reviews_rating">
                     <i class="fas fa-star active"></i>
@@ -124,7 +110,6 @@
                     <i class="fas fa-star active"></i>
                     <i class="fas fa-star active"></i>
                     <i class="fas fa-star"></i>
-                    <span>(4 Customer Review)</span>
                   </div>
                   <div v-else-if="product.rating == 3" class="reviews_rating">
                     <i class="fas fa-star active"></i>
@@ -132,7 +117,6 @@
                     <i class="fas fa-star active"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                    <span>(3 Customer Review)</span>
                   </div>
                   <div v-else-if="product.rating == 2" class="reviews_rating">
                     <i class="fas fa-star active"></i>
@@ -140,7 +124,6 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                    <span>(2 Customer Review)</span>
                   </div>
                   <div v-else-if="product.rating == 1" class="reviews_rating">
                     <i class="fas fa-star active"></i>
@@ -148,7 +131,6 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                    <span>(1 Customer Review)</span>
                   </div>
                   <div v-else class="product-review">
                     <span>No Rating</span>
@@ -165,16 +147,16 @@
                     <span>Color</span>
                     <ul class="color-variant d-flex">
                       <li
-                        v-bind:class="{ active: activeColor == variant }"
-                        v-for="(variant, variantIndex) in Color(
+                          v-for="(variant, variantIndex) in Color(
                           product.variants
                         )"
-                        :key="variantIndex"
+                          :key="variantIndex"
+                          v-bind:class="{ active: activeColor == variant }"
                       >
                         <a
-                          :class="[variant]"
-                          v-bind:style="{ 'background-color': variant }"
-                          @click="
+                            :class="[variant]"
+                            v-bind:style="{ 'background-color': variant }"
+                            @click="
                             sizeVariant(
                               product.variants[variantIndex].image_id,
                               variantIndex,
@@ -188,18 +170,18 @@
                   <form id="product_count_form_one">
                     <div class="product_count_one">
                       <b-form-spinbutton
-                        id="sb-inline"
-                        min="1"
-                        max="100"
-                        v-model="quantity"
-                        inline
-                        class="border-0"
+                          id="sb-inline"
+                          v-model="quantity"
+                          class="border-0"
+                          inline
+                          max="100"
+                          min="1"
                       ></b-form-spinbutton>
                       <a
-                        href="javascript:void(0)"
-                        @click="addToCart(product)"
-                        class="theme-btn-one btn-black-overlay btn_sm"
-                        >Add To Cart</a
+                          class="theme-btn-one btn-black-overlay btn_sm"
+                          href="javascript:void(0)"
+                          @click="addToCart(product)"
+                      >Add To Cart</a
                       >
                     </div>
                   </form>
@@ -226,7 +208,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapState} from "vuex";
+
 export default {
   name: "ProductBox1",
   props: ["product", "index"],
@@ -238,14 +221,13 @@ export default {
 
       imageSrc: "",
       cartProduct: {},
-      compareProduct: {},
       dismissSecs: 3,
       dismissCountDown: 0,
 
-      quantity: 1,
-
       activeColor: "",
-      selectedSize: "",
+      selectedSize: '',
+      selectedColor: '',
+      showQuickOptions: false,
       qty: "",
       size: [],
       swiperOption: {
@@ -274,31 +256,39 @@ export default {
   },
 
   methods: {
-    // Product details Popup id Methods
-    toggleModal() {
-      this.$refs["product-details-popup"].toggle("#toggle-btn");
-    },
-
-    // Image Url
     getImageUrl(path) {
+      if (!path) return '';
+      if (path.startsWith('http')) {
+        return path;
+      }
       return require("@/assets/img/product-image/" + path);
     },
 
-    // Product Add To Cart realted methods
-    addToCart: function (product) {
+    addToCart(product) {
+      if (!this.selectedSize && this.product.variants?.length > 0) {
+        this.$toast.warning('Lütfen beden seçiniz');
+        this.showQuickOptions = true;
+        return;
+      }
+
+      const variant = this.product.variants?.find(v =>
+          v.size === this.selectedSize &&
+          v.color === this.selectedColor
+      ) || this.product.variants?.[0] || {};
+
+      const cartItem = {
+        ...product,
+        quantity: this.quantity,
+        color: variant.color || this.selectedColor || '',
+        size: variant.size || this.selectedSize || '',
+        imageId: variant.image_id || (product.images?.[0]?.image_id),
+        variantId: `${product.id}-${variant.color || this.selectedColor || ''}-${variant.size || this.selectedSize || ''}`
+      };
+
+      this.$store.dispatch('cart/addToCart', cartItem);
       this.dismissCountDown = this.dismissSecs;
-      this.cartProduct = product;
       this.$emit("showalert", this.dismissCountDown);
-      this.$store.dispatch("cart/addToCart", product);
     },
-
-    // After Add to cart Alert
-    countDownChanged(dismissCountDown) {
-      this.dismissCountDown = dismissCountDown;
-      this.$emit("alertseconds", this.dismissCountDown);
-    },
-
-    // Discount Price
     discountedPrice(product) {
       const price = product.price - (product.price * product.discount) / 100;
       return price;
@@ -313,8 +303,6 @@ export default {
       this.$emit("showalert", this.dismissCountDown);
       this.$store.dispatch("products/addToCompare", product);
     },
-
-    // Display Unique color
     Color(variants) {
       const uniqColor = [];
       for (let i = 0; i < Object.keys(variants).length; i++) {
@@ -324,7 +312,6 @@ export default {
       }
       return uniqColor;
     },
-    // Change Size Variant
     changeSizeVariant(variant) {
       this.selectedSize = variant;
     },
@@ -332,7 +319,6 @@ export default {
       this.swiper.slideTo(id, 1000, false);
     },
     sizeVariant(id, slideId, color) {
-      // this.swiper.slideTo(slideId, 1000, false)
       this.size = [];
       this.activeColor = color;
       this.product.variants.filter((item) => {

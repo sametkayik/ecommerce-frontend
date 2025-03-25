@@ -11,11 +11,6 @@ const state = {
 
 // getters 
 const getters = {
-    getcollectionProduct: (state) => {
-        return collection = state.products.filter((product) => {
-            return collection === product.collection
-        })
-    },
     getProductById: (state) => {
         return id => state.products.find((product) => {
             return product.id === +id
@@ -31,6 +26,18 @@ const getters = {
 
 // mutations 
 const mutations = {
+    setProducts(state, products) {
+        state.productslist = products.map(product => ({
+            ...product,
+            variants: product.variants.map(variant => ({
+                ...variant,
+
+                image: product.images.find(image => image.imageId === variant.imageId) || {}
+            }))
+        }));
+        state.products = state.productslist;
+        state.shuffleproducts = state.productslist;
+    },
     addToWishlist: (state, payload) => {
         const product = state.products.find( item => item.id === payload.id )
         const wishlistItems = state.wishlist.find( item => item.id === payload.id )
@@ -101,8 +108,42 @@ const actions = {
     },
     getallProduct: (context) => {
         context.commit('getallProduct')
-    }
+    },
+    async fetchProducts({commit}) {
+        try {
+            const response = await fetch('https://localhost:5002/api/products');
+            const {result} = await response.json();
+            console.log(result)
+            const transformedProducts = result.map(product => ({
+                id: product.productId,
+                title: product.title,
+                price: product.price,
+                description: product.description,
+                category: product.category,
+                brand: product.brand,
+                collection: product.collection[0],
+                hot: product.hot,
+                discount: product.discount,
+                stock: product.stock,
+                new: product.new,
+                rating: product.rating,
+                tags: product.tags,
+                variants: product.variants.map(variant => ({
+                    color: variant.color,
+                    size: variant.size,
 
+                })),
+                images: product.images.map(image => ({
+                    src: image.src,
+                    image_id: image.imageId,
+                    alt: image.alt
+                }))
+            }));
+            commit('setProducts', transformedProducts);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    },
 }
 
 export default {

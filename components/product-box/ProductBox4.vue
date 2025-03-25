@@ -1,57 +1,52 @@
 <template>
   <div>
+    PRODUCT 4
     <div class="product_item_two">
       <div class="product_item_inner">
         <div class="product_img_wrap">
           <nuxt-link :to="{ path: '/product/' + product.id }">
             <img
-              :src="getImageUrl(imageSrc ? imageSrc : product.images[0].src)"
-              :alt="product.title"
+                :alt="product.title"
+                :src="getImageUrl(imageSrc ? imageSrc : product.images[0].src)"
             />
           </nuxt-link>
         </div>
         <div class="product_button">
-          <button @click="addToCart(product)" title="Add To Cart">
+          <button title="Add To Cart" @click="addToCart(product)">
             <i class="fa fa-shopping-bag"></i>
           </button>
-          <button @click="addToWishlist(product)" title="Wishlist">
+          <button title="Wishlist" @click="addToWishlist(product)">
             <i class="fa fa-heart"></i>
           </button>
-          <button
-            id="toggle-btn"
-            @click="toggleModal"
-            class="action quickview"
-            title="Quick view"
-          >
-            <i class="fa fa-eye"></i>
-          </button>
+
         </div>
       </div>
       <div class="product_detail">
         <h5 class="product_title">
           <nuxt-link :to="{ path: '/product/' + product.id }">{{
-            product.title
-          }}</nuxt-link>
+              product.title
+            }}
+          </nuxt-link>
         </h5>
-        <p class="item_price" v-if="product.discount">
+        <p v-if="product.discount" class="item_price">
           ${{ discountedPrice(product) }}
         </p>
-        <p class="item_price" v-else>${{ product.price }}</p>
+        <p v-else class="item_price">${{ product.price }}</p>
       </div>
     </div>
 
     <!-- Modal Area Start-->
     <div>
       <b-modal
-        ref="product-details-popup"
-        centered
-        hide-footer
-        title="Using Component Methods"
-        class="product_one_modal_top"
-        id="product_slider_one"
+          id="product_slider_one"
+          ref="product-details-popup"
+          centered
+          class="product_one_modal_top"
+          hide-footer
+          title="Using Component Methods"
       >
         <template #modal-header="{ close }">
-          <button type="button" class="close close_modal_icon" @click="close()">
+          <button class="close close_modal_icon" type="button" @click="close()">
             <span aria-hidden="true"><i class="fas fa-times"></i></span>
           </button>
         </template>
@@ -60,18 +55,18 @@
           <div class="row">
             <div class="col-lg-5 col-md-6 col-sm-12 col-12">
               <div class="products_modal_sliders">
-                <div v-swiper:mySwiper="swiperOption" ref="mySwiper">
+                <div ref="mySwiper" v-swiper:mySwiper="swiperOption">
                   <div class="swiper-wrapper">
                     <div
-                      class="swiper-slide"
-                      v-for="(imag, index) in product.images"
-                      :key="index"
+                        v-for="(imag, index) in product.images"
+                        :key="index"
+                        class="swiper-slide"
                     >
                       <img
-                        :src="getImageUrl(imag.src)"
-                        :id="imag.image_id"
-                        class="img-fluid bg-img"
-                        alt="imag.alt"
+                          :id="imag.image_id"
+                          :src="getImageUrl(imag.src)"
+                          alt="imag.alt"
+                          class="img-fluid bg-img"
                       />
                     </div>
                   </div>
@@ -87,7 +82,7 @@
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star active"></i>
-                  <span>(5 Customer Review)</span>
+
                 </div>
                 <div v-else-if="product.rating == 4" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -95,7 +90,7 @@
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star"></i>
-                  <span>(4 Customer Review)</span>
+
                 </div>
                 <div v-else-if="product.rating == 3" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -103,7 +98,7 @@
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>(3 Customer Review)</span>
+
                 </div>
                 <div v-else-if="product.rating == 2" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -111,7 +106,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>(2 Customer Review)</span>
+
                 </div>
                 <div v-else-if="product.rating == 1" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -119,7 +114,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>(1 Customer Review)</span>
+
                 </div>
                 <div v-else class="product-review">
                   <span>No Rating</span>
@@ -136,14 +131,14 @@
                   <span>Color</span>
                   <ul class="color-variant d-flex">
                     <li
-                      v-bind:class="{ active: activeColor == variant }"
-                      v-for="(variant, variantIndex) in Color(product.variants)"
-                      :key="variantIndex"
+                        v-for="(variant, variantIndex) in Color(product.variants)"
+                        :key="variantIndex"
+                        v-bind:class="{ active: activeColor == variant }"
                     >
                       <a
-                        :class="[variant]"
-                        v-bind:style="{ 'background-color': variant }"
-                        @click="
+                          :class="[variant]"
+                          v-bind:style="{ 'background-color': variant }"
+                          @click="
                           sizeVariant(
                             product.variants[variantIndex].image_id,
                             variantIndex,
@@ -157,18 +152,18 @@
                 <form id="product_count_form_one">
                   <div class="product_count_one">
                     <b-form-spinbutton
-                      id="sb-inline"
-                      min="1"
-                      max="100"
-                      v-model="quantity"
-                      inline
-                      class="border-0"
+                        id="sb-inline"
+                        v-model="quantity"
+                        class="border-0"
+                        inline
+                        max="100"
+                        min="1"
                     ></b-form-spinbutton>
                     <a
-                      href="javascript:void(0)"
-                      @click="addToCart(product)"
-                      class="theme-btn-one btn-black-overlay btn_sm"
-                      >Add To Cart</a
+                        class="theme-btn-one btn-black-overlay btn_sm"
+                        href="javascript:void(0)"
+                        @click="addToCart(product)"
+                    >Add To Cart</a
                     >
                   </div>
                 </form>
@@ -194,24 +189,19 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapState} from "vuex";
+
 export default {
   name: "ProductBox4",
   props: ["product", "index"],
 
   data() {
     return {
-      // Product Quanity Increment/ Decrement Data
       quantity: 1,
-
       imageSrc: "",
       cartProduct: {},
-      compareProduct: {},
       dismissSecs: 3,
       dismissCountDown: 0,
-
-      quantity: 1,
-
       activeColor: "",
       selectedSize: "",
       qty: "",
@@ -227,7 +217,6 @@ export default {
     ...mapState({
       productslist: (state) => state.products.productslist,
     }),
-
     swiper() {
       return this.$refs.mySwiper.swiper;
     },
@@ -242,31 +231,25 @@ export default {
   },
 
   methods: {
-    // Product details Popup id Methods
     toggleModal() {
       this.$refs["product-details-popup"].toggle("#toggle-btn");
     },
-
-    // Image Url
     getImageUrl(path) {
+      if (path.startsWith('http')) {
+        return path;
+      }
       return require("@/assets/img/product-image/" + path);
     },
-
-    // Product Add To Cart realted methods
     addToCart: function (product) {
       this.dismissCountDown = this.dismissSecs;
       this.cartProduct = product;
       this.$emit("showalert", this.dismissCountDown);
       this.$store.dispatch("cart/addToCart", product);
     },
-
-    // After Add to cart Alert
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
       this.$emit("alertseconds", this.dismissCountDown);
     },
-
-    // Discount Price
     discountedPrice(product) {
       const price = product.price - (product.price * product.discount) / 100;
       return price;
@@ -281,8 +264,6 @@ export default {
       this.$emit("showalert", this.dismissCountDown);
       this.$store.dispatch("products/addToCompare", product);
     },
-
-    // Display Unique color
     Color(variants) {
       const uniqColor = [];
       for (let i = 0; i < Object.keys(variants).length; i++) {
@@ -292,7 +273,6 @@ export default {
       }
       return uniqColor;
     },
-    // Change Size Variant
     changeSizeVariant(variant) {
       this.selectedSize = variant;
     },
