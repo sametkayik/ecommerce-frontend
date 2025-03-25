@@ -1,0 +1,42 @@
+# Node modules
+/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor directories
+.vscode/
+.idea/
+
+# Build directories
+.nuxt/
+dist/
+
+# Dependency directories
+yarn.lock
+package-lock.json
+
+# Temporary files
+*.tmp
+*.swp
+
+# Nuxt.js generate output
+/static/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Test and coverage reports
+coverage/
