@@ -25,5 +25,7 @@
     "vue2-animate": "^2.1.4",
     "vuelidate": "^0.7.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxt/types": "~2.18.0"
+  }
 }
