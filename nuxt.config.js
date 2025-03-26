@@ -53,6 +53,11 @@ export default {
     proxy: true,
 
   },
+
+  router: {
+    middleware: 'auth'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
