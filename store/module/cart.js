@@ -2,18 +2,16 @@ import products from '../../data/products'
 
 const state = {
   products: products.data,
-  cart: []
+  cart: JSON.parse(localStorage.getItem('cart')) || [],
 }
 // getters
 const getters = {
+  cartTotal: state => {
+    return state.cart.reduce((total, item) => total + item.quantity, 0);
+  },
   cartItems: (state) => {
     return state.cart
   },
-  // cartTotalAmount: (state) => {
-  //     return state.cart.reduce( (total, product) => {
-  //         return total + (product.price * product.quantity)
-  //       }, 0 )
-  // },
   cartTotalAmount: (state) => {
     return state.cart.reduce( (total, product) => {
       return total + ( (product.price - ( product.price * product.discount / 100) ) * product.quantity)
@@ -35,20 +33,30 @@ const actions = {
 
 // mutations
 const mutations = {
+  initializeCart(state, cart) {
+    state.cart = cart
+  },
   addToCart: (state, payload) => {
-    const product = state.products.find(item => item.id === payload.id)
-    const cartItems = state.cart.find(item => item.id === payload.id)
-    const qty = payload.quantity ? payload.quantity : 1
-    if (cartItems) {
-      cartItems.quantity = qty
+    console.log('Sepete Eklenen:', payload);
+
+    const variantId = `${payload.id}-${payload.color}-${payload.size}`;
+    const cartItem = state.cart.find(item =>
+        item.variantId === variantId
+    );
+
+    if (cartItem) {
+      cartItem.quantity += payload.quantity || 1;
     } else {
       state.cart.push({
-        ...product,
-        quantity: qty
-      })
+        ...payload,
+        variantId,
+        variantText: `${payload.color} / ${payload.size}`,
+        imageId: payload.images?.[variantId]?.imageId || (payload.images?.[0]?.image_id)
+      });
     }
-    product.stock--
+    localStorage.setItem('cart', JSON.stringify(state.cart));
   },
+// FIX: Update variant quantity, not product
   updateCartQuantity: (state, payload) => {
     // Calculate Product Stock Counts
     function calculateStockCounts(product, quantity) {
@@ -59,6 +67,7 @@ const mutations = {
       }
       return true
     }
+
     state.cart.find((items, index) => {
       if (items.id === payload.product.id) {
         const qty = state.cart[index].quantity + payload.qty
@@ -71,10 +80,16 @@ const mutations = {
         return true
       }
     })
+    const item = state.cart.find(item => item.variantId === payload.product.variantId);
+    if (item) {
+      item.quantity = Math.max(1, payload.qty);
+    }
+    localStorage.setItem('cart', JSON.stringify(state.cart));
   },
   removeCartItem: (state, payload) => {
-      const index = state.cart.indexOf(payload)
-      state.cart.splice(index, 1)
+    const index = state.cart.indexOf(payload)
+    state.cart.splice(index, 1)
+    localStorage.setItem('cart', JSON.stringify(state.cart));
   }
 
 }

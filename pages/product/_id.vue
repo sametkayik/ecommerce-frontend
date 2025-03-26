@@ -7,10 +7,7 @@
           <div class="col-lg-12">
             <div class="common_banner_text">
               <h2>Shop</h2>
-              <b-breadcrumb
-                :items="breadcrumbItems"
-                class="bg-transparent"
-              ></b-breadcrumb>
+              <b-breadcrumb :items="breadcrumbItems" class="bg-transparent"></b-breadcrumb>
             </div>
           </div>
         </div>
@@ -23,20 +20,12 @@
         <div class="row area_boxed">
           <div class="col-lg-4">
             <div class="product_single_one_img">
-              <div v-swiper:mySwiper="swiperOption" ref="mySwiper">
+              <div ref="mySwiper" v-swiper:mySwiper="swiperOption">
                 <div class="swiper-wrapper">
-                  <div
-                    class="swiper-slide"
-                    v-for="(product, index) in getDetail.images"
-                    :key="index"
-                  >
-                    <inner-image-zoom
-                      :src="getImageUrl(product.src)"
-                      :id="product.image_id"
-                      :zoomSrc="getImageUrl(product.src)"
-                      moveType="drag"
-                      className="product-image-zoom"
-                    />
+                  <div v-for="(product, index) in getDetail.images" :key="index" class="swiper-slide">
+                    <inner-image-zoom :id="product.image_id" :src="getImageUrl(product.src)"
+                                      :zoomSrc="getImageUrl(product.src)" className="product-image-zoom"
+                                      moveType="drag"/>
                   </div>
                 </div>
               </div>
@@ -52,7 +41,7 @@
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star active"></i>
-                  <span>(5 Customer Review)</span>
+
                 </div>
                 <div v-else-if="getDetail.rating == 4" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -60,7 +49,7 @@
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star"></i>
-                  <span>(4 Customer Review)</span>
+
                 </div>
                 <div v-else-if="getDetail.rating == 3" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -68,7 +57,7 @@
                   <i class="fas fa-star active"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>(3 Customer Review)</span>
+
                 </div>
                 <div v-else-if="getDetail.rating == 2" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -76,7 +65,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>(2 Customer Review)</span>
+
                 </div>
                 <div v-else-if="getDetail.rating == 1" class="reviews_rating">
                   <i class="fas fa-star active"></i>
@@ -84,7 +73,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
-                  <span>(1 Customer Review)</span>
+
                 </div>
                 <div v-else class="product-review">
                   <span>No Rating</span>
@@ -96,77 +85,44 @@
                 </h4>
                 <h4 v-else>${{ getDetail.price }}</h4>
                 <p>{{ getDetail.description }}</p>
-                <div class="customs_selects">
-                  <select name="product" class="customs_sel_box">
-                    <option value="size">Size</option>
-                    <option value="xl">XL</option>
-                    <option value="small">S</option>
-                    <option value="medium">M</option>
-                    <option value="large">L</option>
-                  </select>
-                </div>
-                <div class="variable-single-item">
-                  <span>Color</span>
 
+                <div class="variable-single-item">
+                  <span>Beden</span>
+                  <ul class="size-variant d-flex">
+                    <li v-for="sizeOption in size" :key="sizeOption">
+                      <button :class="{ active: selectedSize === sizeOption }" @click="changeSizeVariant(sizeOption)">
+                        {{ sizeOption }}
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="variable-single-item">
+                  <span>Renk</span>
                   <ul class="color-variant d-flex">
-                    <li
-                      v-bind:class="{ active: activeColor == variant }"
-                      v-for="(variant, variantIndex) in Color(
-                        getDetail.variants
-                      )"
-                      :key="variantIndex"
-                    >
-                      <a
-                        :class="[variant]"
-                        v-bind:style="{ 'background-color': variant }"
-                        @click="
-                          sizeVariant(
-                            getDetail.variants[variantIndex].image_id,
-                            variantIndex,
-                            variant
-                          )
-                        "
-                      ></a>
+                    <li v-for="(variant, index) in Color(getDetail.variants)" :key="index"
+                        :class="{ active: activeColor === variant }">
+                      <a :style="{ 'background-color': variant }"
+                         @click="sizeVariant(getDetail.variants[index].image_id, index, variant)"></a>
                     </li>
                   </ul>
                 </div>
                 <form id="product_count_form_two">
                   <div class="product_count_one">
-                    <b-form-spinbutton
-                      id="sb-inline"
-                      min="1"
-                      max="100"
-                      v-model="quantity"
-                      inline
-                      class="border-0"
-                    ></b-form-spinbutton>
+                    <b-form-spinbutton id="sb-inline" v-model="quantity" class="border-0" inline max="100"
+                                       min="1"></b-form-spinbutton>
                   </div>
                 </form>
                 <div class="links_Product_areas">
                   <ul>
                     <li>
-                      <button
-                        @click="addToWishlist(getDetail)"
-                        class="action wishlist bg-transparent"
-                        title="Wishlist"
-                      >
+                      <button class="action wishlist bg-transparent" title="Wishlist" @click="addToWishlist(getDetail)">
                         <i class="far fa-heart mr-1"></i>Add To Wishlist
                       </button>
                     </li>
-                    <li>
-                      <button
-                        @click="addToCompare(getDetail)"
-                        class="action compare bg-transparent"
-                        title="Compare"
-                      >
-                        <i class="fas fa-exchange-alt mr-1"></i>Add To Compare
-                      </button>
-                    </li>
+
                   </ul>
-                  <button
-                    @click="addToCart(getDetail)"
-                    class="theme-btn-one btn-black-overlay btn_sm"
-                  >
+                  <button class="theme-btn-one btn-black-overlay btn_sm" @click="addToCart(getDetail)">
                     Add To Cart
                   </button>
                 </div>
@@ -178,218 +134,23 @@
           <div class="col-lg-12">
             <div class="product_details_tabs">
               <b-tabs>
-                <b-tab title="Description" active id="description">
+                <b-tab id="description" active title="Description">
                   <div class="product_description">
-                    <p>
-                      Curabitur arcu erat, accumsan id imperdiet et, porttitor
-                      at sem. Vestibulum ac diam sit amet quam vehicula
-                      elementum sed sit amet dui. Sed porttitor lectus nibh.
-                      Vivamus magna justo, lacinia eget consectetur sed,
-                      convallis at tellus. Sed porttitor lectus nibh. Donec
-                      sollicitudin molestie malesuada. Vivamus magna justo,
-                      lacinia eget consectetur sed, convallis at tellus.
-                      Curabitur arcu erat, accumsan id imperdiet et, porttitor
-                      at sem.
-                    </p>
-                    <ul>
-                      <li>Vivamus magna justo, lacinia eget consectetur sed</li>
-                      <li>Curabitur aliquet quam id dui posuere blandit</li>
-                      <li>
-                        Mauris blandit aliquet elit, eget tincidunt nibh
-                        pulvinar
-                      </li>
-                    </ul>
-                    <p>
-                      Donec sollicitudin molestie malesuada. Cras ultricies
-                      ligula sed magna dictum porta. Mauris blandit aliquet
-                      elit, eget tincidunt nibh pulvinar a. Nulla porttitor
-                      accumsan tincidunt. Cras ultricies ligula sed magna dictum
-                      porta. Curabitur arcu erat, accumsan id imperdiet et,
-                      Pellentesque in ipsum id orci porta dapibus. Lorem ipsum
-                      dolor sit amet, consectetur adipiscing elit. porttitor at
-                      sem. Quisque velit nisi, pretium ut lacinia in, elementum
-                      id enim.
-                    </p>
-                  </div>
-                </b-tab>
-
-                <b-tab title="Additional Information" id="additional">
-                  <div class="product_additional">
-                    <ul>
-                      <li>Weight: <span>400 g</span></li>
-                      <li>Dimensions: <span>10 x 10 x 15 cm</span></li>
-                      <li>
-                        Materials: <span> 60% cotton, 40% polyester</span>
-                      </li>
-                      <li>
-                        Other Info:
-                        <span>
-                          American heirloom jean shorts pug seitan
-                          letterpress</span
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </b-tab>
-
-                <b-tab title="Reviews" id="review">
-                  <div class="product_reviews">
-                    <ul>
-                      <li class="media">
-                        <div class="media-img">
-                          <img
-                            :src="require('@/assets/img/user/user1.png')"
-                            alt="img"
-                          />
-                        </div>
-                        <div class="media-body">
-                          <div class="media-header">
-                            <div class="media-name">
-                              <h4>Sara Anela</h4>
-                              <p>5 days ago</p>
-                            </div>
-                            <div class="post-share">
-                              <a href="#!" class="replay">Replay</a>
-                              <a href="#!" class="">Report</a>
-                            </div>
-                          </div>
-                          <div class="media-pragraph">
-                            <div class="product_review_strat">
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                            </div>
-                            <p>
-                              Cras sit amet nibh libero, in gravida nulla. Nulla
-                              vel metus scelerisque Praesent sapien massa,
-                              convallis a pellentesque nec, egestas non nisi.
-                              Cras ultricies ligula sed magna dictum porta.
-                              Vestibulum ac diam sit amet quam vehicula
-                              elementum sed sit amet dui. Vivamus magna justo.
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="media">
-                        <div class="media-img">
-                          <img
-                            :src="require('@/assets/img/user/user2.png')"
-                            alt="img"
-                          />
-                        </div>
-                        <div class="media-body">
-                          <div class="media-header">
-                            <div class="media-name">
-                              <h4>Sara Anela</h4>
-                              <p>5 days ago</p>
-                            </div>
-                            <div class="post-share">
-                              <a href="#!" class="replay">Replay</a>
-                              <a href="#!" class="">Report</a>
-                            </div>
-                          </div>
-                          <div class="media-pragraph">
-                            <div class="product_review_strat">
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                            </div>
-                            <p>
-                              Cras sit amet nibh libero, in gravida nulla. Nulla
-                              vel metus scelerisque Praesent sapien massa,
-                              convallis a pellentesque nec, egestas non nisi.
-                              Cras ultricies ligula sed magna dictum porta.
-                              Vestibulum ac diam sit amet quam vehicula
-                              elementum sed sit amet dui. Vivamus magna justo.
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="media">
-                        <div class="media-img">
-                          <img
-                            :src="require('@/assets/img/user/user3.png')"
-                            alt="img"
-                          />
-                        </div>
-                        <div class="media-body">
-                          <div class="media-header">
-                            <div class="media-name">
-                              <h4>Sara Anela</h4>
-                              <p>5 days ago</p>
-                            </div>
-                            <div class="post-share">
-                              <a href="#!" class="replay">Replay</a>
-                              <a href="#!" class="">Report</a>
-                            </div>
-                          </div>
-                          <div class="media-pragraph">
-                            <div class="product_review_strat">
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                              <span
-                                ><a href="#!"><i class="fas fa-star"></i></a
-                              ></span>
-                            </div>
-                            <p>
-                              Cras sit amet nibh libero, in gravida nulla. Nulla
-                              vel metus scelerisque Praesent sapien massa,
-                              convallis a pellentesque nec, egestas non nisi.
-                              Cras ultricies ligula sed magna dictum porta.
-                              Vestibulum ac diam sit amet quam vehicula
-                              elementum sed sit amet dui. Vivamus magna justo.
-                            </p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                    <p>{{ getDetail.description }}</p>
                   </div>
                 </b-tab>
               </b-tabs>
+
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <RelatedProducts :productType="productType" :productId="productId" />
+    <RelatedProducts :productId="productId" :productType="productType"/>
 
     <!-- Instagram Arae -->
-    <InstagramArea />
+    <InstagramArea/>
   </div>
 </template>
 
@@ -405,8 +166,23 @@ export default {
     InstagramArea,
     RelatedProducts,
   },
+  async asyncData({params, store}) {
+    try {
+      await store.dispatch('products/fetchProducts');
+      return {
+        productId: params.id
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      return {
+        productId: params.id
+      }
+    }
+  },
   data() {
     return {
+      dismissSecs: 3,
+      dismissCountDown: 0,
       activeColor: "",
       selectedSize: "",
       qty: "",
@@ -424,7 +200,6 @@ export default {
           to: "/product",
         },
       ],
-      // Product Quanity Increment/ Decrement Data
       quantity: 1,
       cartProduct: {},
       compareProduct: {},
@@ -437,82 +212,163 @@ export default {
   },
 
   computed: {
-    getDetail: function () {
-      return this.$store.getters["products/getProductById"](
-        this.$route.params.id
-      );
+    getDetail() {
+      const product = this.$store.getters['products/getProductById'](this.productId);
+      return product || {
+        id: 0,
+        title: 'Ürün Yükleniyor...',
+        price: 0,
+        discount: 0,
+        description: '',
+        rating: 0,
+        variants: [
+          {color: '#cccccc', size: 'XXL', image_id: 1},
+          {color: '#00ff00', size: 'M', image_id: 2},
+          {color: '#0000ff', size: 'L', image_id: 3}
+        ],
+        images: [
+          {
+            src: 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+            image_id: 1
+          },
+          {
+            src: 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+            image_id: 2
+          },
+          {
+            src: 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+            image_id: 3
+          }
+        ],
+        collection: '',
+        category: '',
+        brand: '',
+        stock: 0,
+        new: false,
+        hot: false,
+        tags: []
+      };
     },
     swiper() {
-      return this.$refs.mySwiper.swiper;
+      return this.$refs.mySwiper?.swiper;
     },
   },
 
   mounted() {
-    // For displaying default color and size on pageload
-    this.uniqColor = this.getDetail.variants[0].color;
-    this.sizeVariant(this.getDetail.variants[0].image_id);
-    // Active default color
-    this.activeColor = this.uniqColor;
-    this.changeSizeVariant(this.getDetail.variants[0].size);
-    this.relatedProducts();
+    if (this.getDetail && this.getDetail.variants && this.getDetail.variants.length > 0) {
+      const defaultVariant = this.getDetail.variants[0];
+      this.activeColor = defaultVariant.color;
+      this.selectedSize = defaultVariant.size;
+      this.size = this.getDetail.variants
+          .filter(v => v.color === this.activeColor)
+          .map(v => v.size);
 
-    // For scroll page top for every Route
+      this.$nextTick(() => {
+        if (this.swiper) {
+          this.sizeVariant(defaultVariant.image_id, 0, defaultVariant.color);
+        }
+      });
+
+      this.changeSizeVariant(defaultVariant.size);
+      this.relatedProducts();
+    }
     window.scrollTo(0, 0);
   },
 
   methods: {
     getImageUrl(path) {
-      return require("@/assets/img/product-image/" + path);
-    },
+      if (path.startsWith('http')) {
+        return path;
+      }
+    return require("@/assets/img/product-image/" + path);
+      },
     discountedPrice(product) {
       const price = product.price - (product.price * product.discount) / 100;
       return price;
     },
-    // add to cart
-    addToCart: function (product, qty) {
-      product.quantity = qty || 1;
-      this.$store.dispatch("cart/addToCart", product);
+    addToCart() {
+      if (!this.selectedSize) {
+        alert('Lütfen beden seçiniz!');
+        return;
+      }
+      const selectedVariant = this.getDetail.variants.find(
+          v => v.color === this.activeColor && v.size === this.selectedSize
+      );
+      if (!selectedVariant) {
+        alert('Geçersiz varyant!');
+        return;
+      }
+      this.$store.dispatch('cart/addToCart', {
+        ...this.getDetail,
+        quantity: this.quantity,
+        color: this.activeColor,
+        size: this.selectedSize,
+        imageId: selectedVariant.image_id,
+        variantId: `${this.getDetail.id}-${this.activeColor}-${this.selectedSize}`
+      });
+      this.dismissCountDown = this.dismissSecs;
+      this.$emit("showalert", this.dismissCountDown);
     },
-    // add to wishlist
-    addToWishlist: function (product) {
-      this.$store.dispatch("products/addToWishlist", product);
+    addToWishlist() {
+      if (!this.selectedSize) {
+        alert('Lütfen beden seçiniz!');
+        return;
+      }
+      const selectedVariant = this.getDetail.variants.find(
+          v => v.color === this.activeColor && v.size === this.selectedSize
+      );
+      if (!selectedVariant) {
+        alert('Geçersiz varyant kombinasyonu!');
+        return;
+      }
+      const wishlistItem = {
+        ...this.getDetail,
+        quantity: this.quantity,
+        color: this.activeColor,
+        size: this.selectedSize,
+        imageId: selectedVariant.image_id,
+        variantId: `${this.getDetail.id}-${this.activeColor}-${this.selectedSize}`,
+        images: this.getDetail.images.filter(img => img.image_id === selectedVariant.image_id)
+      };
+      this.$store.dispatch('products/addToWishlist', wishlistItem);
     },
-    // add to compare
-    addToCompare: function (product) {
-      this.$store.dispatch("products/addToCompare", product);
-    },
-    // Related Product Display
     relatedProducts() {
       this.productType = this.getDetail.type;
       this.productId = this.getDetail.id;
     },
-
-    // Display Unique color
     Color(variants) {
+      if (!variants || !Array.isArray(variants)) {
+        return [];
+      }
       const uniqColor = [];
-      for (let i = 0; i < Object.keys(variants).length; i++) {
-        if (uniqColor.indexOf(variants[i].color) === -1) {
+      for (let i = 0; i < variants.length; i++) {
+        if (variants[i]?.color && uniqColor.indexOf(variants[i].color) === -1) {
           uniqColor.push(variants[i].color);
         }
       }
       return uniqColor;
-    },
-    // Change Size Variant
-    changeSizeVariant(variant) {
-      this.selectedSize = variant;
     },
     slideTo(id) {
       this.swiper.slideTo(id, 1000, false);
     },
     sizeVariant(id, slideId, color) {
       this.swiper.slideTo(slideId, 1000, false);
-      this.size = [];
       this.activeColor = color;
-      this.getDetail.variants.filter((item) => {
-        if (id === item.image_id) {
-          this.size.push(item.size);
-        }
-      });
+
+      this.size = this.getDetail.variants
+          .filter(v => v.color === color)
+          .map(v => v.size);
+
+      if (!this.size.includes(this.selectedSize)) {
+        this.selectedSize = this.size[0] || '';
+      }
+    },
+    changeSizeVariant(size) {
+      this.selectedSize = size;
+
+      console.log('Seçilen Beden:', this.selectedSize,
+          'Aktif Renk:', this.activeColor,
+          'Varyantlar:', this.getDetail.variants);
     },
   },
 
@@ -530,4 +386,32 @@ export default {
     };
   },
 };
-</script> 
+</script>
+
+<style scoped>
+.size-variant {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.size-variant li {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.size-variant button {
+  padding: 5px 15px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.size-variant button.active {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+</style>

@@ -3,53 +3,48 @@
     <!-- Start Header Area -->
     <header class="header-section d-none d-xl-block">
       <div class="header-wrapper">
-        <div
-          id="header"
-          class="
+        <div id="header" class="
             header-bottom
             header-bottom-color--golden
             section-fluid
             sticky-header
             sticky-color--golden
-          "
-        >
+          ">
           <div class="container">
             <div class="row">
-              <div
-                class="col-12 d-flex align-items-center justify-content-between"
-              >
+              <div class="col-12 d-flex align-items-center justify-content-between">
                 <!-- Start Header Logo -->
                 <div class="header-logo">
                   <div class="logo">
-                    <nuxt-link to="/"
-                      ><img :src="require('@/assets/img/logo.png')" alt="logo"
-                    /></nuxt-link>
+                    <nuxt-link to="/"><img :src="require('@/assets/img/logo.png')" alt="logo"/></nuxt-link>
                   </div>
                 </div>
                 <!-- End Header Logo -->
 
                 <!-- Start Header Main Menu -->
-                <div
-                  class="main-menu menu-color--black menu-hover-color--golden"
-                >
+                <div class="main-menu menu-color--black menu-hover-color--golden">
                   <nav>
                     <ul>
                       <li class="has-dropdown">
                         <a href="#">Kategoriler <i class="fa fa-angle-down"></i></a>
                         <!-- Sub Menu -->
                         <ul class="sub-menu">
-                          <li><nuxt-link to="/shop/shop-4">Filtrele</nuxt-link></li>
-                          
+                          <li>
+                            <nuxt-link to="/shop/shop-4">Filtrele</nuxt-link>
+                          </li>
+
                         </ul>
                       </li>
 
-                     
+
                       <li class="has-dropdown">
                         <a href="#">Hakkımızda <i class="fa fa-angle-down"></i></a>
                         <!-- Sub Menu -->
                         <ul class="sub-menu">
-                          <li><nuxt-link to="about-us">Biz Kimiz</nuxt-link></li>
-                          
+                          <li>
+                            <nuxt-link to="/about-us">Biz Kimiz</nuxt-link>
+                          </li>
+
                         </ul>
                       </li>
 
@@ -57,16 +52,20 @@
                         <a href="#">Bize Ulaşın <i class="fa fa-angle-down"></i></a>
                         <!-- Sub Menu -->
                         <ul class="sub-menu">
-                          <li><nuxt-link to="contact-us">Bize Ulaşın</nuxt-link></li>
-                          
+                          <li>
+                            <nuxt-link to="/contact-us">Bize Ulaşın</nuxt-link>
+                          </li>
+
                         </ul>
                       </li>
-                       <li class="has-dropdown">
+                      <li class="has-dropdown">
                         <a href="#">Hesabım <i class="fa fa-angle-down"></i></a>
                         <!-- Sub Menu -->
                         <ul class="sub-menu">
-                          <li><nuxt-link to="/my-account/orders">Siparişlerim</nuxt-link></li>
-                          
+                          <li>
+                            <nuxt-link to="/my-account">Detaylar</nuxt-link>
+                          </li>
+
                         </ul>
                       </li>
                     </ul>
@@ -75,13 +74,11 @@
                 <!-- End Header Main Menu Start -->
 
                 <!-- Start Header Action Link -->
-                <ul
-                  class="
+                <ul class="
                     header-action-link
                     action-color--black
                     action-hover-color--golden
-                  "
-                >
+                  ">
                   <li>
                     <a v-b-toggle.offcanvas-wishlish class="offcanvas-toggle">
                       <i class="far fa-heart"></i>
@@ -95,19 +92,13 @@
                     </a>
                   </li>
                   <li>
-                    <a
-                      v-b-toggle.search_sidebar
-                      class="search_width offcanvas-toggle"
-                    >
-                      <img src="~/assets/img/svg/search.svg" alt="img" />
+                    <a v-b-toggle.search_sidebar class="search_width offcanvas-toggle">
+                      <img alt="img" src="~/assets/img/svg/search.svg"/>
                     </a>
                   </li>
                   <li>
-                    <a
-                      v-b-toggle.offcanvas-about
-                      class="offacnvas offside-about offcanvas-toggle"
-                      ><i class="fas fa-bars"></i
-                    ></a>
+                    <a v-b-toggle.offcanvas-about class="offacnvas offside-about offcanvas-toggle"><i
+                        class="fas fa-bars"></i></a>
                   </li>
                 </ul>
                 <!-- End Header Action Link -->
@@ -120,17 +111,14 @@
     <!-- Start Header Area -->
 
     <!-- Start Mobile Header -->
-    <div
-      id="mobile_header"
-      class="
+    <div id="mobile_header" class="
         mobile-header
         sticky-header
         sticky-color--golden
         mobile-header-bg-color--golden
         section-fluid
         d-lg-block d-xl-none
-      "
-    >
+      ">
       <div class="container">
         <div class="row">
           <div class="col-12 d-flex align-items-center justify-content-between">
@@ -140,7 +128,7 @@
                 <li>
                   <nuxt-link to="/">
                     <div class="logo">
-                      <img :src="require('@/assets/img/logo.png')" alt="logo" />
+                      <img :src="require('@/assets/img/logo.png')" alt="logo"/>
                     </div>
                   </nuxt-link>
                 </li>
@@ -150,19 +138,14 @@
 
             <!-- Start Mobile Right Side -->
             <div class="mobile-right-side">
-              <ul
-                class="
+              <ul class="
                   header-action-link
                   action-color--black
                   action-hover-color--golden
-                "
-              >
+                ">
                 <li>
-                  <a
-                    v-b-toggle.search_sidebar
-                    class="search_width offcanvas-toggle"
-                  >
-                    <img src="~/assets/img/svg/search.svg" alt="img" />
+                  <a v-b-toggle.search_sidebar class="search_width offcanvas-toggle">
+                    <img alt="img" src="~/assets/img/svg/search.svg"/>
                   </a>
                 </li>
                 <li>
@@ -178,11 +161,8 @@
                   </a>
                 </li>
                 <li>
-                  <a
-                    v-b-toggle.offcanvas-about
-                    class="offacnvas offside-about offcanvas-toggle"
-                    ><i class="fas fa-bars"></i
-                  ></a>
+                  <a v-b-toggle.offcanvas-about class="offacnvas offside-about offcanvas-toggle"><i
+                      class="fas fa-bars"></i></a>
                 </li>
               </ul>
             </div>
@@ -194,17 +174,12 @@
     <!-- End Mobile Header -->
 
     <!-- ...:::: Start Offcanvas Mobile Menu Section:::... -->
-    <b-sidebar
-      id="offcanvas-about"
-      class="offcanvas-mobile-about-section"
-      backdrop
-      right
-    >
+    <b-sidebar id="offcanvas-about" backdrop class="offcanvas-mobile-about-section" right>
       <!-- Start Mobile Menu Navbar Wrap -->
       <div class="mobile-menu-navbar-wrap">
         <!-- Start Mobile Menu Nav -->
         <div class="offcanvas-menu">
-          <sidebar-menu :menu="menu" />
+          <sidebar-menu :menu="menu"/>
         </div>
         <!-- End Mobile Menu Nav -->
       </div>
@@ -213,7 +188,7 @@
       <!-- Start Mobile contact Info -->
       <div class="mobile-contact-info">
         <address class="address">
-          <img :src="require('@/assets/img/logo-white.png')" alt="logo" />
+          <img :src="require('@/assets/img/logo-white.png')" alt="logo"/>
           <span>Adres: İstanbul / Bahçeşehir</span>
           <span>Bizi Arayın: 0212 352 05 22, 0123456789</span>
           <span>Email: info@opendart.com</span>
@@ -235,9 +210,15 @@
         </ul>
 
         <ul class="user-link">
-          <li><nuxt-link to="/my-account/wishlist">Favoriler</nuxt-link></li>
-          <li><nuxt-link to="/cart/">Sepet</nuxt-link></li>
-          <li><nuxt-link to="/my-account/checkout-1">Siparişi Tamamla</nuxt-link></li>
+          <li>
+            <nuxt-link to="/my-account/wishlist">Favoriler</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/cart/">Sepet</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/my-account/checkout-1">Siparişi Tamamla</nuxt-link>
+          </li>
         </ul>
       </div>
       <!-- End Mobile contact Info -->
@@ -245,58 +226,39 @@
     <!-- ...:::: End Offcanvas Mobile Menu Section:::... -->
 
     <!-- Start Offcanvas Addcart Section -->
-    <b-sidebar
-      id="offcanvas-add-cart"
-      class="offcanvas-add-cart-section"
-      backdrop
-      right
-    >
+    <b-sidebar id="offcanvas-add-cart" backdrop class="offcanvas-add-cart-section" right>
       <div class="offcanvas-add-cart-wrapper">
         <h4 class="offcanvas-title">Alışveriş Sepeti</h4>
         <div v-if="cart.length">
           <ul class="offcanvas-cart">
-            <li
-              class="offcanvas-cart-item-single"
-              v-for="(item, index) in cart"
-              :key="index"
-            >
+            <li v-for="(item, index) in cart" :key="item.variantId || index" class="offcanvas-cart-item-single">
               <div class="offcanvas-cart-item-block">
-                <nuxt-link
-                  :to="{ path: '/product/' + item.id }"
-                  class="offcanvas-cart-item-image-link"
-                >
-                  <img
-                    :src="getImageUrl(item.images[0].src)"
-                    alt="img"
-                    class="offcanvas-cart-image"
-                  />
+                <nuxt-link :to="{ path: '/product/' + item.id }" class="offcanvas-cart-item-image-link">
+                  <img :src="getVariantImage(item)" alt="img" class="offcanvas-cart-image"/>
                 </nuxt-link>
                 <div class="offcanvas-cart-item-content">
-                  <nuxt-link
-                    :to="{ path: '/product/' + item.id }"
-                    class="offcanvas-cart-item-link"
-                    >{{ item.title }}</nuxt-link
-                  >
+                  <nuxt-link :to="{ path: '/product/' + item.id }" class="offcanvas-cart-item-link">{{
+                      item.title
+                    }}
+                  </nuxt-link>
+
+                  <!-- Varyant bilgilerini göster -->
+                  <div v-if="item.color || item.size" class="variant-info">
+                    <span v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></span>
+                    <span v-if="item.size">Beden: {{ item.size }}</span>
+                  </div>
+
                   <div class="offcanvas-cart-item-details">
-                    <span class="offcanvas-cart-item-details-quantity"
-                      >{{ item.quantity }} x</span
-                    >
-                    <span
-                      v-if="item.discount"
-                      class="offcanvas-cart-item-details-price"
-                      >${{ discountedPrice(item) }}</span
-                    >
-                    <span v-else class="offcanvas-cart-item-details-price"
-                      >${{ item.price }}</span
-                    >
+                    <span class="offcanvas-cart-item-details-quantity">{{ item.quantity }} x</span>
+                    <span v-if="item.discount" class="offcanvas-cart-item-details-price">${{
+                        discountedPrice(item).toFixed(2)
+                      }}</span>
+                    <span v-else class="offcanvas-cart-item-details-price">${{ item.price.toFixed(2) }}</span>
                   </div>
                 </div>
               </div>
               <div class="offcanvas-cart-item-delete text-right">
-                <button
-                  @click="removeCartItem(item)"
-                  class="offcanvas-cart-item-delete bg-transparent remove-btn"
-                >
+                <button class="offcanvas-cart-item-delete bg-transparent remove-btn" @click="removeCartItem(item)">
                   <i class="far fa-trash-alt"></i>
                 </button>
               </div>
@@ -305,25 +267,17 @@
 
           <div class="offcanvas-cart-total-price">
             <span class="offcanvas-cart-total-price-text">Toplam:</span>
-            <span class="offcanvas-cart-total-price-value"
-              >${{ cartTotal }}</span
-            >
+            <span class="offcanvas-cart-total-price-value">${{ cartTotal.toFixed(2) }}</span>
           </div>
 
           <ul class="offcanvas-cart-action-button">
             <li>
-              <nuxt-link
-                to="/cart"
-                class="theme-btn-one btn-black-overlay btn_md"
-                >Sepeti Görüntüle</nuxt-link
-              >
+              <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/cart">Sepeti Görüntüle</nuxt-link>
             </li>
             <li>
-              <nuxt-link
-                to="/my-account/checkout-1"
-                class="theme-btn-one btn-black-overlay btn_md"
-                >Siparişi Tamamla</nuxt-link
-              >
+              <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/my-account/checkout-1">Siparişi
+                Tamamla
+              </nuxt-link>
             </li>
           </ul>
         </div>
@@ -336,63 +290,35 @@
     <!-- End  Offcanvas Addcart Section -->
 
     <!-- Start Offcanvas Wishlist Sidebar Section -->
-    <b-sidebar
-      id="offcanvas-wishlish"
-      class="offcanvas-add-cart-section"
-      backdrop
-      right
-    >
+    <b-sidebar id="offcanvas-wishlish" backdrop class="offcanvas-add-cart-section" right>
       <div class="offcanvas-wishlist-wrapper">
         <h4 class="offcanvas-title">Favoriler</h4>
-
         <div v-if="wishlist.length">
           <ul class="offcanvas-wishlist">
-            <li
-              class="offcanvas-wishlist-item-single"
-              v-for="(item, index) in wishlist"
-              :key="index"
-            >
+            <li v-for="(item, index) in wishlist" :key="index" class="offcanvas-wishlist-item-single">
               <div class="offcanvas-wishlist-item-block">
-                <nuxt-link
-                  :to="{ path: '/product/' + item.id }"
-                  class="offcanvas-wishlist-item-image-link"
-                >
-                  <img
-                    :src="getImageUrl(item.images[0].src)"
-                    alt="img"
-                    class="offcanvas-wishlist-image"
-                  />
+                <nuxt-link :to="{ path: '/product/' + item.id }" class="offcanvas-wishlist-item-image-link">
+                  <img :src="getImageUrl(item.images[0].src)" alt="img" class="offcanvas-wishlist-image"/>
                 </nuxt-link>
                 <div class="offcanvas-wishlist-item-content">
-                  <nuxt-link
-                    :to="{ path: '/product/' + item.id }"
-                    class="offcanvas-wishlist-item-link"
-                    >{{ item.title }}</nuxt-link
-                  >
+                  <nuxt-link :to="{ path: '/product/' + item.id }" class="offcanvas-wishlist-item-link">
+                    {{ item.title }}
+                    <div v-if="item.color || item.size" class="variant-info">
+                  <span v-if="item.color" :style="{ backgroundColor: item.color }"
+                        class="color-badge"></span>
+                      <span v-if="item.size">{{ item.size }}</span>
+                    </div>
+                  </nuxt-link>
                   <div class="offcanvas-wishlist-item-details">
-                    <span class="offcanvas-wishlist-item-details-quantity"
-                      >{{ item.quantity }} x</span
-                    >
-                    <span
-                      v-if="item.discount"
-                      class="offcanvas-wishlist-item-details-price"
-                      >${{ discountedPrice(item) }}</span
-                    >
-                    <span v-else class="offcanvas-wishlist-item-details-price"
-                      >${{ item.price }}</span
-                    >
+                    <span class="offcanvas-wishlist-item-details-price">
+                  ${{ discountedPrice(item).toFixed(2) }}
+                </span>
                   </div>
                 </div>
               </div>
               <div class="offcanvas-wishlist-item-delete text-right">
-                <button
-                  @click="removeWishlistItem(item)"
-                  class="
-                    offcanvas-wishlist-item-delete
-                    bg-transparent
-                    remove-btn
-                  "
-                >
+                <button class="offcanvas-wishlist-item-delete bg-transparent remove-btn"
+                        @click="removeWishlistItem(item)">
                   <i class="far fa-trash-alt"></i>
                 </button>
               </div>
@@ -400,17 +326,14 @@
           </ul>
           <ul class="offcanvas-wishlist-action-button">
             <li>
-              <nuxt-link
-                to="/my-account/wishlist"
-                class="theme-btn-one btn-black-overlay btn_md"
-                >Favorileri Görüntüle</nuxt-link
-              >
+              <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/my-account/wishlist">
+                Favorileri Görüntüle
+              </nuxt-link>
             </li>
           </ul>
         </div>
-
         <ul v-else class="offcanvas-wishlist">
-          <li>Hiç favari ürünüz yok!</li>
+          <li>Hiç favori ürününüz yok!</li>
         </ul>
       </div>
     </b-sidebar>
@@ -418,8 +341,7 @@
 
     <!-- Start Offcanvas Search Bar Section -->
     <b-sidebar id="search_sidebar" backdrop>
-      <div
-        class="
+      <div class="
           px-3
           py-2
           search-sidebar-content-wrap
@@ -428,50 +350,28 @@
           align-content-center
           w-100
           h-100
-        "
-      >
-        <form
-          class="d-flex flex-column justify-content-center product-search-form"
-        >
-          <input
-            type="search"
-            placeholder="Ürün adı yazınız..."
-            v-model="searchString"
-            @keyup="searchProduct"
-          />
+        ">
+        <form class="d-flex flex-column justify-content-center product-search-form">
+          <input v-model="searchString" placeholder="Ürün adı yazınız..." type="search" @keyup="searchProduct"/>
           <button class="btn btn-lg btn-golden">Ara</button>
 
           <!-- Show search product here -->
           <ul v-if="searchItems.length" class="search-results-wrap">
             <li v-for="(product, index) in searchItems" :key="index">
               <div class="offcanvas-cart-item-block mb-3">
-                <nuxt-link
-                  :to="{ path: '/product/' + product.id }"
-                  class="offcanvas-cart-item-image-link"
-                >
-                  <img
-                    :src="getImageUrl(product.images[0].src)"
-                    alt="img"
-                    class="offcanvas-cart-image"
-                  />
+                <nuxt-link :to="{ path: '/product/' + product.id }" class="offcanvas-cart-item-image-link">
+                  <img :src="getImageUrl(product.images[0].src)" alt="img" class="offcanvas-cart-image"/>
                 </nuxt-link>
                 <div class="offcanvas-cart-item-content">
-                  <nuxt-link
-                    :to="{ path: '/product/' + product.id }"
-                    class="offcanvas-cart-item-link text-white"
-                    >{{ product.title }}</nuxt-link
-                  >
+                  <nuxt-link :to="{ path: '/product/' + product.id }" class="offcanvas-cart-item-link text-white">{{
+                      product.title
+                    }}
+                  </nuxt-link>
                   <div class="offcanvas-cart-item-details">
-                    <span
-                      v-if="product.discount"
-                      class="offcanvas-cart-item-details-price text-white"
-                      >${{ discountedPrice(product) }}</span
-                    >
-                    <span
-                      v-else
-                      class="offcanvas-cart-item-details-price text-white"
-                      >${{ product.price }}</span
-                    >
+                    <span v-if="product.discount" class="offcanvas-cart-item-details-price text-white">${{
+                        discountedPrice(product)
+                      }}</span>
+                    <span v-else class="offcanvas-cart-item-details-price text-white">${{ product.price }}</span>
                   </div>
                 </div>
               </div>
@@ -486,11 +386,11 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import {mapGetters, mapState} from "vuex";
+
 export default {
   data() {
     return {
-      // Mobile Menu Item Data
       menu: [
         {
           title: "Home",
@@ -668,11 +568,35 @@ export default {
   },
 
   mounted: function () {
+    if (process.client) {
+      this.$store.commit('cart/initializeCart', JSON.parse(localStorage.getItem('cart')) || [])
+      this.$store.commit('products/initializeWishlist', JSON.parse(localStorage.getItem('wishlist')) || [])
+    }
     // Menu Js
-    this.$nextTick(function () {
-      window.onscroll = function () {
-        myFunction();
-      };
+    this.$nextTick(() => {
+      if (process.client) {
+        const header = document.getElementById("header");
+        const mobile_header = document.getElementById("mobile_header");
+
+        if (header && mobile_header) {
+          const sticky = header.offsetTop;
+
+          window.onscroll = function () {
+            if (window.pageYOffset > sticky) {
+              header.classList.add("sticky");
+              mobile_header.classList.add("sticky");
+            } else {
+              header.classList.remove("sticky");
+              mobile_header.classList.remove("sticky");
+            }
+          };
+        }
+
+        this.$store.commit('cart/initializeCart',
+            JSON.parse(localStorage.getItem('cart')) || []);
+        this.$store.commit('products/initializeWishlist',
+            JSON.parse(localStorage.getItem('wishlist')) || []);
+      }
 
       var header = document.getElementById("header");
       var mobile_header = document.getElementById("mobile_header");
@@ -688,9 +612,6 @@ export default {
         }
       }
     });
-    // Menu End
-
-    // this.productsArray()
   },
 
   computed: {
@@ -706,24 +627,33 @@ export default {
   },
 
   methods: {
-    // Image Url
+    getVariantImage(item) {
+      if (item.imageId && item.images) {
+        const variantImage = item.images.find(img => img.image_id === item.imageId);
+        if (variantImage) {
+          return this.getImageUrl(variantImage.src);
+        }
+      }
+      return this.getImageUrl(item.images[0].src);
+    },
     getImageUrl(path) {
+      if (path.startsWith('http')) {
+        return path;
+      }
       return require("@/assets/img/product-image/" + path);
     },
-
-    // Discount Price
     discountedPrice(product) {
       const price = product.price - (product.price * product.discount) / 100;
       return price;
     },
-
-    // For Delete/Remove Product Item
     removeCartItem: function (product) {
       this.$store.dispatch("cart/removeCartItem", product);
     },
-    // For Delete/Remove wishlist Item
-    removeWishlistItem: function (product) {
-      this.$store.dispatch("products/removeWishlistItem", product);
+    removeWishlistItem(product) {
+      this.$store.dispatch('products/removeWishlistItem', {
+        ...product,
+        variantId: product.variantId || `${product.id}-${product.color}-${product.size}`
+      });
     },
     searchProduct() {
       this.$store.dispatch("products/searchProduct", this.searchString);
@@ -733,7 +663,6 @@ export default {
 </script>
 
 <style>
-/* Mobile Menu Multi Dropdown Items Start */
 .v-sidebar-menu .vsm--toggle-btn {
   display: none;
 }
@@ -749,5 +678,23 @@ export default {
   -webkit-box-shadow: 3px 0px 0px 0px var(--main-theme-color) inset;
   box-shadow: 3px 0px 0px 0px var(--main-theme-color) inset;
 }
-/* Mobile Menu Multi Dropdown Items End */
+.variant-info {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #666;
+}
+.color-badge {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+.offcanvas-wishlist .variant-info {
+  margin: 3px 0;
+  font-size: 11px;
+}
 </style>

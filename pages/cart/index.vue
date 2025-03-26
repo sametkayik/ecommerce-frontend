@@ -7,10 +7,7 @@
           <div class="col-lg-12">
             <div class="common_banner_text">
               <h2>{{ this.title }}</h2>
-              <b-breadcrumb
-                :items="breadcrumbItems"
-                class="bg-transparent"
-              ></b-breadcrumb>
+              <b-breadcrumb :items="breadcrumbItems" class="bg-transparent"></b-breadcrumb>
             </div>
           </div>
         </div>
@@ -27,80 +24,71 @@
                 <table>
                   <!-- Start Cart Table Head -->
                   <thead>
-                    <tr>
-                      <th class="product_remove">Remove</th>
-                      <th class="product_thumb">Image</th>
-                      <th class="product_name">Product</th>
-                      <th class="product-price">Price</th>
-                      <th class="product_quantity">Quantity</th>
-                      <th class="product_total">Total</th>
-                    </tr>
+                  <tr>
+                    <th class="product_remove">Remove</th>
+                    <th class="product_thumb">Image</th>
+                    <th class="product_name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product_quantity">Quantity</th>
+                    <th class="product_total">Total</th>
+                  </tr>
                   </thead>
                   <!-- End Cart Table Head -->
                   <tbody v-if="cart.length">
-                    <!-- Start Cart Single Item-->
-                    <tr v-for="(item, index) in cart" :key="index">
-                      <td class="product_remove">
-                        <button
-                          @click="removeCartItem(index)"
-                          class="bg-transparent remove-btn"
-                        >
-                          <i class="far fa-trash-alt"></i>
-                        </button>
-                      </td>
-                      <td class="product_thumb">
-                        <nuxt-link :to="{ path: '/product/' + item.id }">
-                          <img
-                            :src="getImageUrl(item.images[0].src)"
-                            alt="img"
-                          />
-                        </nuxt-link>
-                      </td>
-                      <td class="product_name">
-                        <nuxt-link :to="{ path: '/product/' + item.id }">{{
-                          item.title
-                        }}</nuxt-link>
-                      </td>
-                      <td class="product-price">
-                        ${{ discountedPrice(item) }}
-                      </td>
-                      <td class="product_quantity">
-                        <label>Quantity</label>
-                        <input
-                          min="1"
-                          max="100"
-                          v-model="item.quantity"
-                          type="number"
-                        />
-                      </td>
-                      <td class="product_total">
-                        ${{ discountedPrice(item) * item.quantity }}
-                      </td>
-                    </tr>
-                    <!-- End Cart Single Item-->
+                  <!-- Start Cart Single Item-->
+                  <tr v-for="(item, index) in cart" :key="item.variantId || index">
+                    <td class="product_remove">
+                      <button class="bg-transparent remove-btn" @click="removeCartItem(item)">
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                    </td>
+                    <td class="product_thumb">
+                      <nuxt-link :to="{ path: '/product/' + item.id }">
+                        <img :src="getVariantImage(item)" alt="img"/>
+                      </nuxt-link>
+                    </td>
+                    <td class="product_name">
+                      <nuxt-link :to="{ path: '/product/' + item.id }">{{ item.title }}</nuxt-link>
+                      <div v-if="item.color || item.size" class="variant-info">
+                        <span v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></span>
+                        <span v-if="item.size">Beden: {{ item.size }}</span>
+                      </div>
+                    </td>
+                    <td class="product-price">
+                      <span class="fw-bold">${{ discountedPrice(item).toFixed(2) }}</span>
+                      <del v-if="item.discount" class="text-danger ms-2">${{ item.price.toFixed(2) }}</del>
+                    </td>
+                    <td class="product_quantity">
+                      <label>Quantity</label>
+                      <input v-model.number="item.quantity" max="100" min="1" type="number"
+                             @change="updateCartItem(item)">
+                    </td>
+                    <td class="product_total">${{ (discountedPrice(item) * item.quantity).toFixed(2) }}</td>
+                  </tr>
+                  <!-- End Cart Single Item-->
                   </tbody>
                   <tbody v-else>
-                    <tr>
-                      <td class="border-0">No Item found!</td>
-                    </tr>
+                  <tr>
+                    <td class="border-0">No Item found!</td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
-            <div
-              class="coupon_code left"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
+            <div class="coupon_code left" data-aos="fade-up" data-aos-delay="200">
               <h3>Coupon</h3>
               <div class="coupon_inner">
-                <p>Enter your coupon code if you have one.</p>
-                <input class="mb-2" placeholder="Coupon code" type="text" />
+                <p>Enter your coupon code if you have one!</p>
+                <input
+                    class="mb-2"
+                    placeholder="Coupon code"
+                    type="text"
+                />
                 <button
-                  type="submit"
-                  class="theme-btn-one btn-black-overlay btn_sm"
+                    class="theme-btn-one btn-black-overlay btn_sm"
+                    type="button"
                 >
                   Apply coupon
                 </button>
@@ -108,33 +96,25 @@
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
-            <div
-              class="coupon_code right"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
+            <div class="coupon_code right" data-aos="fade-up" data-aos-delay="400">
               <h3>Cart Total</h3>
               <div class="coupon_inner">
                 <div class="cart_subtotal">
                   <p>Subtotal</p>
-                  <p class="cart_amount">${{ cartTotal }}</p>
+                  <p class="cart_amount">${{ cartTotal.toFixed(2) }}</p>
                 </div>
                 <div class="cart_subtotal">
                   <p>Shipping</p>
                   <p class="cart_amount"><span>Flat Rate:</span> $25.00</p>
                 </div>
-                <a href="#">Calculate shipping</a>
-
                 <div class="cart_subtotal">
                   <p>Total</p>
-                  <p class="cart_amount">${{ cartTotal + 25 }}</p>
+                  <p class="cart_amount">${{ (cartTotal + 25).toFixed(2) }}</p>
                 </div>
                 <div class="checkout_btn">
-                  <nuxt-link
-                    to="/my-account/checkout-1"
-                    class="theme-btn-one btn-black-overlay btn_sm"
-                    >Proceed to Checkout</nuxt-link
-                  >
+                  <nuxt-link class="theme-btn-one btn-black-overlay btn_sm" to="/my-account/checkout-1">Proceed to
+                    Checkout
+                  </nuxt-link>
                 </div>
               </div>
             </div>
@@ -146,7 +126,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   name: "cart",
@@ -165,8 +145,6 @@ export default {
           to: "/cart",
         },
       ],
-
-      // Product Quanity Increment/ Decrement Data
       quantity: 1,
     };
   },
@@ -182,21 +160,34 @@ export default {
     window.scrollTo(0, 0);
   },
   methods: {
+    getVariantImage(item) {
+      if (item.imageId && item.images) {
+        const variantImage = item.images.find(img => img.image_id === item.imageId);
+        if (variantImage) return this.getImageUrl(variantImage.src);
+      }
+      return this.getImageUrl(item.images[0].src);
+    },
+
+    updateCartItem(item) {
+      this.$store.dispatch('cart/updateCartQuantity', {
+        product: item,
+        qty: item.quantity
+      });
+    },
+    discountedPrice(product) {
+      const price = product.price - (product.price * (product.discount || 0) / 100);
+      return Math.round(price * 100) / 100;
+    },
     getImageUrl(path) {
+      if (path.startsWith('http')) {
+        return path;
+      }
       return require("@/assets/img/product-image/" + path);
     },
-    // Discount Price
-    discountedPrice(product) {
-      const price = product.price - (product.price * product.discount) / 100;
-      return price;
-    },
-    // For Delete/Remove Product Item
     removeCartItem: function (product) {
       this.$store.dispatch("cart/removeCartItem", product);
     },
   },
-
-  // Page head() Title, description for SEO
   head() {
     return {
       title: this.title,
@@ -211,3 +202,29 @@ export default {
   },
 };
 </script>
+<style scoped>
+.variant-info {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.color-badge {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+.product_quantity input {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+}
+.remove-btn {
+  border: none;
+  cursor: pointer;
+}
+</style>

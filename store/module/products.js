@@ -4,12 +4,12 @@ const state = {
     productslist: products.data,
     products: products.data,
     shuffleproducts: products.data,
-    wishlist: [],
+    wishlist: JSON.parse(localStorage.getItem('wishlist')) || [],
     compare: [],
     searchProduct: []
 }
 
-// getters 
+// getters
 const getters = {
     getProductById: (state) => {
         return id => state.products.find((product) => {
@@ -17,14 +17,19 @@ const getters = {
         })
     },
     wishlistItems: (state) => {
-        return state.wishlist
+        return state.wishlist.map(item => ({
+            ...item,
+            color: item.color || (item.variants?.[0]?.color),
+            size: item.size || (item.variants?.[0]?.size),
+            variantId: item.variantId || `${item.id}-${item.color || ''}-${item.size || ''}`
+        }))
     },
     compareItems: (state) => {
         return state.compare
     }
 }
 
-// mutations 
+// mutations
 const mutations = {
     setProducts(state, products) {
         state.productslist = products.map(product => ({
@@ -38,9 +43,12 @@ const mutations = {
         state.products = state.productslist;
         state.shuffleproducts = state.productslist;
     },
+    initializeWishlist(state, wishlist) {
+        state.wishlist = wishlist
+    },
     addToWishlist: (state, payload) => {
-        const product = state.products.find( item => item.id === payload.id )
-        const wishlistItems = state.wishlist.find( item => item.id === payload.id )
+        const product = state.products.find(item => item.id === payload.id)
+        const wishlistItems = state.wishlist.find(item => item.id === payload.id)
         if (wishlistItems) {
 
         } else {
@@ -49,9 +57,13 @@ const mutations = {
             })
         }
     },
-    removeWishlistItem: ( state, payload ) => {
-        const index = state.wishlist.indexOf(payload)
-        state.wishlist.splice(index, 1)
+    removeWishlistItem(state, product) {
+        state.wishlist = state.wishlist.filter(item =>
+            product.variantId ? item.variantId !== product.variantId : item.id !== product.id
+        )
+        if (process.client) {
+            localStorage.setItem('wishlist', JSON.stringify(state.wishlist))
+        }
     },
     addToCompare: (state, payload) => {
         const product = state.products.find(item => item.id === payload.id)
@@ -86,7 +98,7 @@ const mutations = {
     }
 }
 
-// actions 
+// actions
 const actions = {
     addToWishlist: (context, payload) => {
         context.commit( 'addToWishlist', payload)
