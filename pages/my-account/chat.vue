@@ -50,21 +50,19 @@
 
 <script>
 export default {
-  name: 'Orders',
+  name: 'Chat',
   data() {
     return {
-      title: 'Orders',
-      // Breadcrumb Items Data
+      title: 'Chat',
       breadcrumbItems: [
         {
           text: 'Home',
           to: '/'
         },
         {
-          text: 'Orders',
+          text: 'Chat',
         }
       ],
-
     }
   },
   mounted() {
@@ -79,7 +77,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Orders page - AndShop Ecommerce Vue js, Nuxt js Template'
+          content: 'Chat page - AndShop Ecommerce Vue js, Nuxt js Template'
         }
       ]
     }

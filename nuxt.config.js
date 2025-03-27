@@ -33,6 +33,7 @@ export default {
   plugins: [
     { src: '~/plugins/plugin.js', mode: 'client' },
     '~/plugins/axios.js',
+    '~/plugins/signalr.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
