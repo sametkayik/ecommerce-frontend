@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: 'Chat',
+  name: 'Orders',
   data() {
     return {
       title: 'Chat',
@@ -60,7 +60,7 @@ export default {
           to: '/'
         },
         {
-          text: 'Chat',
+          text: 'Orders',
         }
       ],
     }
@@ -77,7 +77,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Chat page - AndShop Ecommerce Vue js, Nuxt js Template'
+          content: 'Orders page - AndShop Ecommerce Vue js, Nuxt js Template'
         }
       ]
     }
