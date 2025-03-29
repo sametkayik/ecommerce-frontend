@@ -154,7 +154,7 @@
                         <div v-if="item.color || item.size" class="variant-info">
                                                         <span v-if="item.color" :style="{ backgroundColor: item.color }"
                                                               class="color-badge"></span>
-                          <span v-if="item.size">Beden: {{ item.size }}</span>
+                          <span v-if="item.size">Size: {{ item.size }}</span>
                         </div>
                       </td>
                       <td>${{
@@ -166,15 +166,15 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                      <th>Ara Toplam</th>
+                      <th>Sub Total</th>
                       <td>${{ subtotal.toFixed(2) }}</td>
                     </tr>
                     <tr>
-                      <th>Kargo</th>
+                      <th>Shipping</th>
                       <td>${{ shipping.toFixed(2) }}</td>
                     </tr>
                     <tr>
-                      <th>Toplam</th>
+                      <th>Total</th>
                       <td>${{ total.toFixed(2) }}</td>
                     </tr>
                     </tfoot>
