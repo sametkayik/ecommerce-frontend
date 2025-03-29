@@ -6,7 +6,10 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                     <div class="footer_left_side">
-                        <nuxt-link to="/"><img :src="require('@/assets/img/logo.png')" alt="logo" /></nuxt-link>
+                        <nuxt-link to="/"><img 
+                  :src="$store.state.darkMode ? require('@/assets/img/light-logo.png') : require('@/assets/img/logo.png')" 
+                  alt="logo"
+                /></nuxt-link>
                         <p>
                           DefineX is a new generation consulting house and a venture builder that designs and builds the enablers of digital acceleration for the world. Founded by former teams from a leading Global Consulting Company, DefineX emerged in 2019 to define the next and revolutionize the consulting landscape with a fresh, new way of thinking.
                         </p>
@@ -120,3 +123,70 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+/* Base Footer Styles */
+#footer_one {
+  background-color: var(--bg-secondary);
+  padding: 60px 0;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+#copyright_one {
+  background-color: var(--bg-primary);
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+/* Text Colors */
+.footer_left_side p,
+.footer_one_widget h3,
+.copyright_left h6 {
+  color: var(--text-primary);
+}
+
+.footer_one_widget ul li a,
+.copyright_left h6 span {
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.footer_one_widget ul li a:hover {
+  color: var(--primary-color);
+}
+
+/* Form Elements */
+.subscribe-form input {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.subscribe-form .theme-btn-one {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.subscribe-form .theme-btn-one:hover {
+  background-color: var(--active-color);
+}
+
+/* Social Icons */
+.footer_left_side_icon ul li a {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+.footer_left_side_icon ul li a:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Payment Image */
+.copyright_right img {
+  filter: var(--payment-filter);
+}
+</style>

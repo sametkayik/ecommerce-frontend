@@ -1,34 +1,37 @@
 <template>
   <div>
     <!-- Start Header Area -->
-    <header class="header-section d-none d-xl-block">
+    <header class="header-section d-none d-xl-block" :class="{'dark-header': $store.state.darkMode}">
       <div class="header-wrapper">
         <div id="header" class="
             header-bottom
-            header-bottom-color--golden
-            section-fluid
-            sticky-header
-            sticky-color--golden
-          ">
+            sticky-header"
+            :class="{
+            'dark-mode': $store.state.darkMode
+          }">
           <div class="container">
             <div class="row">
               <div class="col-12 d-flex align-items-center justify-content-between">
                 <!-- Start Header Logo -->
                 <div class="header-logo">
                   <div class="logo">
-                    <nuxt-link to="/"><img :src="require('@/assets/img/logo.png')" alt="logo"/></nuxt-link>
+                    <nuxt-link to="/">
+                   <img 
+                  :src="$store.state.darkMode ? require('@/assets/img/light-logo.png') : require('@/assets/img/logo.png')" 
+                  alt="logo"
+                />
+                    </nuxt-link>
                   </div>
                 </div>
                 <!-- End Header Logo -->
 
                 <!-- Start Header Main Menu -->
-                <div class="main-menu menu-color--black menu-hover-color--golden">
+                <div class="main-menu" :class="{ 'dark-mode': $store.state.darkMode }">
                   <nav>
                     <ul>
                       <li>
                         <nuxt-link to="/shop/shop-4">Shop</nuxt-link>
                       </li>
-
 
                       <li>
                         <nuxt-link to="/about-us">About Us</nuxt-link>
@@ -42,6 +45,8 @@
                         <nuxt-link to="/my-account">Dashboard</nuxt-link>
                       </li>
                     </ul>
+                  
+
                   </nav>
                 </div>
                 <!-- End Header Main Menu Start -->
@@ -53,24 +58,30 @@
                     action-hover-color--golden
                   ">
                   <li>
+                    <button
+                            @click="toggleDarkMode"
+                            class="dark-mode-toggle"
+                            :class="{ 'dark': isDarkMode }"
+                            :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                        >
+                          <h5 class="sun" aria-hidden="true">🌞</h5>
+                          <h5 class="moon" aria-hidden="true">🌙</h5>
+                        </button>
+                  </li>
+                  <li>
                     <a v-b-toggle.offcanvas-wishlish class="offcanvas-toggle">
-                      <i class="far fa-heart"></i>
+                      <i class="far fa-heart" :class="{ 'dark-mode' : $store.state.darkMode }"></i>
                       <span class="item-count">{{ wishlist.length }}</span>
                     </a>
                   </li>
                   <li>
                     <a v-b-toggle.offcanvas-add-cart class="offcanvas-toggle">
-                      <i class="fas fa-shopping-bag"></i>
+                      <i class="fas fa-shopping-bag" :class="{ 'dark-mode' : $store.state.darkMode }"></i>
                       <span class="item-count">{{ cart.length }}</span>
                     </a>
                   </li>
                   <li>
-                    <a v-b-toggle.search_sidebar class="search_width offcanvas-toggle">
-                      <img alt="img" src="~/assets/img/svg/search.svg"/>
-                    </a>
-                  </li>
-                  <li>
-                    <a v-b-toggle.offcanvas-about class="offacnvas offside-about offcanvas-toggle"><i
+                    <a v-b-toggle.offcanvas-about class="offacnvas offside-about offcanvas-toggle" :class="{ 'dark': isDarkMode }"><i
                         class="fas fa-bars"></i></a>
                   </li>
                 </ul>
@@ -123,18 +134,18 @@
                 </li>
                 <li>
                   <a v-b-toggle.offcanvas-wishlish class="offcanvas-toggle">
-                    <i class="far fa-heart"></i>
+                    <i class="far fa-heart" :class="{ 'dark-mode' : $store.state.darkMode }"></i>
                     <span class="item-count">{{ wishlist.length }}</span>
                   </a>
                 </li>
                 <li>
                   <a v-b-toggle.offcanvas-add-cart class="offcanvas-toggle">
-                    <i class="fas fa-shopping-bag"></i>
+                    <i class="fas fa-shopping-bag" :class="{ 'dark-mode' : $store.state.darkMode }"></i>
                     <span class="item-count">{{ cart.length }}</span>
                   </a>
                 </li>
                 <li>
-                  <a v-b-toggle.offcanvas-about class="offacnvas offside-about offcanvas-toggle"><i
+                  <a v-b-toggle.offcanvas-about class="offacnvas offside-about offcanvas-toggle" :class="{ 'dark-mode' : $store.state.darkMode }"><i
                       class="fas fa-bars"></i></a>
                 </li>
               </ul>
@@ -147,7 +158,7 @@
     <!-- End Mobile Header -->
 
     <!-- ...:::: Start Offcanvas Mobile Menu Section:::... -->
-    <b-sidebar id="offcanvas-about" backdrop class="offcanvas-mobile-about-section" right>
+    <b-sidebar id="offcanvas-about" backdrop class="offcanvas-mobile-about-section" right :class="{'dark-header': $store.state.darkMode}">
       <!-- Start Mobile Menu Navbar Wrap -->
       <div class="mobile-menu-navbar-wrap">
         <!-- Start Mobile Menu Nav -->
@@ -164,7 +175,7 @@
           <img :src="require('@/assets/img/logo-white.png')" alt="logo"/>
           <ul>
             <li class="address_location">
-              <p>Kuruçeşme Mahallesi Arnavutköy Kuruçeşme Caddesi No 3/4 Beşiktaş/İstanbul</p>
+              <a href="https://maps.app.goo.gl/5s1Unkrg4GEuJgQz9" >Kuruçeşme Mahallesi Arnavutköy Kuruçeşme Caddesi No 3/4 Beşiktaş/İstanbul</a>
             </li>
             <br/>
             <li class="address_location">
@@ -591,6 +602,9 @@ export default {
   },
 
   computed: {
+    isDarkMode() {
+      return this.$store.state.darkMode
+    },
     ...mapState({
       productslist: (state) => state.products.productslist,
       searchItems: (state) => state.products.searchProduct,
@@ -603,6 +617,9 @@ export default {
   },
 
   methods: {
+    toggleDarkMode() {
+      this.$store.commit('toggleDarkMode')
+    },
     getVariantImage(item) {
       if (item.imageId && item.images) {
         const variantImage = item.images.find(img => img.image_id === item.imageId);
@@ -673,4 +690,88 @@ export default {
   margin: 3px 0;
   font-size: 11px;
 }
+
+.dark-mode-toggle {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  position: relative;
+  width: 50px;
+  height: 26px;
+  transition: background 0.3s ease;
+}
+
+.dark-mode-toggle.dark {
+  background-color: var(--sticky-header-bg-dark);
+}
+
+.dark-mode-toggle .sun,
+.dark-mode-toggle .moon {
+  font-size: 16px;
+  position: absolute;
+}
+
+.dark-mode-toggle .sun {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dark-mode-toggle.dark .sun {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.dark-mode-toggle .moon {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.dark-mode-toggle.dark .moon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dark-mode .main-menu ul li a {
+  color: var(--text-color);
+}
+
+.dark-mode {
+  background-color: var(--sticky-header-bg-dark);
+  color: var(--text-color);
+}
+
+.header-bottom {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+:root {
+  --sticky-golden-bg: #f8f5f0;
+  --sticky-golden-bg-dark: #3a3325; /* Darker golden tone */
+}
+
+.sticky-color--golden.sticky {
+  background-color: var(--sticky-golden-bg) !important;
+}
+
+.dark-mode .sticky-color--golden.sticky {
+  background-color: var(--sticky-header-bg-dark) !important;
+}
+
+.dark-mode .sticky-header {
+  background-color: var(--sticky-header-bg-dark) !important;
+}
+
+#header {
+  background-color: var(--sticky-header-bg);
+}
+
+#header.dark-mode {
+  background-color: var(--sticky-header-bg-dark);
+}
+
 </style>

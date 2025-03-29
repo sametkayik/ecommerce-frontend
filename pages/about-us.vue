@@ -43,49 +43,7 @@
             </div>
         </section>
 
-        <!-- About progressbar -->
-        <section id="about_progressbar" class="ptb-100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="about_progressbar_content">
-                            <h2>Functionality meets perfection</h2>
-                            <p>In today’s day and age, one cannot underestimate the importance of design, the art of
-                                creating striking visuals to move and captivate your audience. And as the world becomes more
-                                and more digitized with each passing second, the importance of graphic design has been
-                                rocketed to the top.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="custom-progress m-t-40">
-                            <!-- Progressbar Item  -->
-                            <div class="progress-bar-item skill-progressbar">
-                                <h6 class="skill-name font--semi-bold m-b-15">UI/UX</h6>
-                                <div class="progress">
-                                    <div class="progress-bar line-progressbar active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 80%"></div>
-                                </div>
-                            </div>
-
-                            <!-- Progressbar Item  -->
-                            <div class="progress-bar-item skill-progressbar">
-                                    <h6 class="skill-name font--semi-bold m-b-15">Ideas</h6>
-                                <div class="progress">
-                                    <div class="progress-bar line-progressbar active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 70%"> </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Progressbar Item  -->
-                            <div class="progress-bar-item skill-progressbar">
-                                <h6 class="skill-name font--semi-bold m-b-15">Design</h6>
-                                <div class="progress">
-                                    <div class="progress-bar line-progressbar active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    
 
         <!-- Service Promo -->
         <section id="service_promo_area" class="ptb-100">
@@ -162,7 +120,7 @@
                                 </div>
                                 <div class="team-content">
                                     <h4 class="team-name font--bold">Abdulsamet Kıyak</h4>
-                                    <span class="team-title">Backend Developer</span>
+                                    <h5 class="team-title">Backend Developer</h5>
                                   <ul class="team-social pos-absolute">
                                     <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
                                     <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
@@ -176,7 +134,7 @@
                                 </div>
                                 <div class="team-content">
                                     <h4 class="team-name font--bold">Samet Kıyak</h4>
-                                    <span class="team-title">Frontend Developer</span>
+                                    <h5 class="team-title">Frontend Developer</h5>
                                     <ul class="team-social pos-absolute">
                                       <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
                                       <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
@@ -190,7 +148,7 @@
                                 </div>
                                 <div class="team-content">
                                     <h4 class="team-name font--bold">Abdulsamet Kayıkçı</h4>
-                                    <span class="team-title">Database Administrator</span>
+                                    <h5 class="team-title">Database Administrator</h5>
                                   <ul class="team-social pos-absolute">
                                     <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
                                     <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
@@ -204,7 +162,7 @@
                                 </div>
                                 <div class="team-content">
                                     <h4 class="team-name font--bold">Samet Kıyakçı</h4>
-                                    <span class="team-title">UI/UX Designer</span>
+                                    <h5 class="team-title">UI/UX Designer</h5>
                                   <ul class="team-social pos-absolute">
                                     <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
                                     <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
@@ -218,7 +176,7 @@
                                 </div>
                                 <div class="team-content">
                                     <h4 class="team-name font--bold">Abdulsamet Kayık</h4>
-                                    <span class="team-title">Fullstack Developer</span>
+                                    <h5 class="team-title">Fullstack Developer</h5>
                                   <ul class="team-social pos-absolute">
                                     <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
                                     <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
@@ -232,7 +190,7 @@
                                 </div>
                                 <div class="team-content">
                                     <h4 class="team-name font--bold">Samet Kayık</h4>
-                                    <span class="team-title">DevOps Engineer</span>
+                                    <h5 class="team-title">DevOps Engineer</h5>
                                   <ul class="team-social pos-absolute">
                                     <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
                                     <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
@@ -297,3 +255,59 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+/* Team Area Dark Mode Styles */
+#team_area {
+  background-color: var(--bg-secondary);
+}
+
+.center_heading h2 {
+  color: var(--text-primary);
+}
+
+.center_heading p {
+  color: var(--text-secondary);
+}
+
+.team-single {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+}
+
+.team-content {
+  background-color: var(--bg-primary);
+}
+
+.team-name {
+  color: var(--text-primary) !important;
+}
+
+.team-title {
+  color: var(--text-secondary);
+}
+
+.team-social li a {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.team-social li a:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Carousel Navigation */
+.owl-carousel .owl-nav button {
+  color: var(--text-primary) !important;
+  background: var(--bg-primary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.owl-carousel .owl-nav button:hover {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+</style>

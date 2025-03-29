@@ -34,7 +34,9 @@
                             <ul>
                                 <li class="address_location">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <p>Kuruçeşme Mahallesi Arnavutköy Kuruçeşme Caddesi No 3/4 Beşiktaş/İstanbul</p>
+                                   <div class="contact_widget">
+                                     <a href="https://maps.app.goo.gl/5s1Unkrg4GEuJgQz9" >Kuruçeşme Mahallesi Arnavutköy Kuruçeşme Caddesi No 3/4 Beşiktaş/İstanbul</a>
+                                   </div>
                                 </li>
                                 <li class="address_location">
                                     <i class="fas fa-phone-volume"></i>
@@ -106,9 +108,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="map_area">
-                          <iframe
-                              src="https://www.openstreetmap.org/export/embed.html?bbox=29.03081%2C41.05842%2C29.04081%2C41.06242&layer=mapnik&marker=41.06042,29.03581">
-                          </iframe>
+                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.399083193068!2d29.033250677188892!3d41.06026841622027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7d635e42757%3A0x42a940f0cfa7c1b4!2sDefineX%20Consulting%20%7C%20Technology%20%7C%20Labs!5e0!3m2!1str!2str!4v1743280677877!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>

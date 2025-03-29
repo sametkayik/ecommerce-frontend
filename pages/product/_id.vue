@@ -76,7 +76,7 @@
 
                 </div>
                 <div v-else class="product-review">
-                  <span>No Rating</span>
+                  <h5>No Rating</h5>
                 </div>
 
                 <h4 v-if="getDetail.discount">
@@ -87,7 +87,7 @@
                 <p>{{ getDetail.description }}</p>
 
                 <div class="variable-single-item">
-                  <span>Size</span>
+                  <h5>Size</h5>
                   <ul class="size-variant d-flex">
                     <li v-for="sizeOption in size" :key="sizeOption">
                       <button :class="{ active: selectedSize === sizeOption }" @click="changeSizeVariant(sizeOption)">
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="variable-single-item">
-                  <span>Color</span>
+                  <h5>Color</h5>
                   <ul class="color-variant d-flex">
                     <li v-for="(variant, index) in Color(getDetail.variants)" :key="index"
                         :class="{ active: activeColor === variant }">
@@ -389,6 +389,54 @@ export default {
 </script>
 
 <style scoped>
+/* Base Styles */
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --border-color: #dee2e6;
+  --primary-color: #007bff;
+  --active-color: #0056b3;
+  --rating-color: #ffc107;
+}
+
+.dark-mode {
+  /* Dark Mode Colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  --border-color: #495057;
+  --primary-color: #4a90e2;
+  --active-color: #1e70bf;
+  --rating-color: #ffc107;
+}
+
+/* Apply color variables */
+#product_single_one {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.product_details_right_one {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.modal_product_content_one h3,
+.modal_product_content_one h4 {
+  color: var(--text-primary);
+}
+
+.modal_product_content_one p {
+  color: var(--text-secondary);
+}
+
+/* Size Variant Buttons */
 .size-variant {
   list-style: none;
   padding: 0;
@@ -403,15 +451,68 @@ export default {
 
 .size-variant button {
   padding: 5px 15px;
-  border: 1px solid #ddd;
-  background: #fff;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   cursor: pointer;
   border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.size-variant button:hover {
+  border-color: var(--primary-color);
 }
 
 .size-variant button.active {
-  border-color: #000;
-  background: #000;
-  color: #fff;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* Color Variant Buttons */
+.color-variant li {
+  border: 2px solid var(--border-color);
+}
+
+.color-variant li.active {
+  border-color: var(--primary-color);
+}
+
+/* Rating Stars */
+.reviews_rating i {
+  color: var(--text-secondary);
+}
+
+.reviews_rating i.active {
+  color: var(--rating-color);
+}
+
+/* Price */
+.modal_product_content_one h4 {
+  color: var(--primary-color);
+}
+
+.modal_product_content_one h4 del {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* Buttons */
+.theme-btn-one {
+  background-color: var(--primary-color);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.theme-btn-one:hover {
+  background-color: var(--active-color);
+}
+
+.action.wishlist {
+  color: var(--text-primary);
+}
+
+.action.wishlist:hover {
+  color: var(--primary-color);
 }
 </style>

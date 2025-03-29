@@ -23,17 +23,17 @@
                         <h3>Register</h3>
                         <form @submit.prevent="handleSubmit">
                             <div class="default-form-box">
-                                <label>Username <span>*</span></label>
+                                <label>Username <h5>*</h5></label>
                                 <input type="text" v-model="user.username" id="username" name="username" class="form-control" :class="{ 'is-invalid': submitted && $v.user.username.$error }" />
                                 <div v-if="submitted && !$v.user.username.required" class="invalid-feedback">Username is required</div>
                             </div>
                         
                             <div class="default-form-box">
-                                <label>Email <span>*</span></label>
+                                <label>Email <h5>*</h5></label>
                                 <input type="email" v-model="user.email" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && $v.user.email.$error }" />
                                 <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
-                                    <span v-if="!$v.user.email.required">Email is required</span>
-                                    <span v-if="!$v.user.email.email">Email is invalid</span>
+                                    <h5 v-if="!$v.user.email.required">Email is required</h5>
+                                    <h5 v-if="!$v.user.email.email">Email is invalid</h5>
                                 </div>
                             </div>
 
@@ -41,8 +41,8 @@
                                 <label for="password">Password</label>
                                 <input type="password" v-model="user.password" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && $v.user.password.$error }" />
                                 <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
-                                    <span v-if="!$v.user.password.required">Password is required</span>
-                                    <span v-if="!$v.user.password.minLength">Password must be at least 6 characters</span>
+                                    <h5 v-if="!$v.user.password.required">Password is required</h5>
+                                    <h5 v-if="!$v.user.password.minLength">Password must be at least 6 characters</h5>
                                 </div>
                             </div>
                                 

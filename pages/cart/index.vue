@@ -50,12 +50,12 @@
                     <td class="product_name">
                       <nuxt-link :to="{ path: '/product/' + item.id }">{{ item.title }}</nuxt-link>
                       <div v-if="item.color || item.size" class="variant-info">
-                        <span v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></span>
-                        <span v-if="item.size">Size: {{ item.size }}</span>
+                        <h5 v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></h5>
+                        <h5 v-if="item.size">Size: {{ item.size }}</h5>
                       </div>
                     </td>
                     <td class="product-price">
-                      <span class="fw-bold">${{ discountedPrice(item).toFixed(2) }}</span>
+                      <h5 class="fw-bold">${{ discountedPrice(item).toFixed(2) }}</h5>
                       <del v-if="item.discount" class="text-danger ms-2">${{ item.price.toFixed(2) }}</del>
                     </td>
                     <td class="product_quantity">
@@ -105,7 +105,7 @@
                 </div>
                 <div class="cart_subtotal">
                   <p>Shipping</p>
-                  <p class="cart_amount"><span>Flat Rate:</span> $25.00</p>
+                  <p class="cart_amount"><h5>Flat Rate:</h5> $25.00</p>
                 </div>
                 <div class="cart_subtotal">
                   <p>Total</p>

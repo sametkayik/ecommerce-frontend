@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'dark-mode': $store.state.darkMode }">
     <!-- Banner Area -->
     <section id="common_banner_one">
       <div class="container ">
@@ -34,7 +34,7 @@
           <div class="col-lg-6 col-md-12">
             <div class="product_shot">
               <div class="product_shot_title">
-                <p>Sort By:</p>
+                <p class="sort-by-text">Sort By:</p>
               </div>
               <div class="customs_selects">
                 <select class="customs_sel_box" name="product">
@@ -77,10 +77,10 @@
                     <ul class="pagination">
                       <li class="page-item">
                         <a class="page-link" href="javascript:void(0)" @click="updatePaginate(current-1)">
-                          <span aria-hidden="true">
+                          <h5 aria-hidden="true">
                           <i aria-hidden="true" class="fa fa-chevron-left"
                              style="font-size:10px;"></i>
-                          </span>
+                          </h5>
                         </a>
                       </li>
                       <li v-for="(page_index, index) in this.pages" :key="index"
@@ -94,10 +94,10 @@
                       </li>
                       <li class="page-item">
                         <a class="page-link" href="javascript:void(0)" @click="updatePaginate(current+1)">
-                          <span aria-hidden="true">
+                          <h5 aria-hidden="true">
                           <i aria-hidden="true" class="fa fa-chevron-right"
                              style="font-size:10px;"></i>
-                          </span>
+                          </h5>
                         </a>
                       </li>
                     </ul>
@@ -274,3 +274,52 @@ export default {
 
 }
 </script>
+
+<style scoped>
+/* Temel stiller */
+#common_banner_one {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Dark mode özel stiller */
+.dark-mode #common_banner_one {
+  background-color: var(--card-bg);
+}
+
+/* Select box'lar için */
+.customs_sel_box {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Pagination için */
+.pagination .page-item .page-link {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  border-color: var(--border-color);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--main-theme-color);
+  border-color: var(--main-theme-color);
+}
+
+/* Alert'ler için */
+.alert {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.product_shot_title .sort-by-text {
+  color: var(--text-color);
+}
+
+.customs_sel_box {
+  background-color: #fff;
+  color: var(--bg-color);
+  border-color: var(--border-color);
+}
+</style>

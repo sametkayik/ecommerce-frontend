@@ -11,13 +11,17 @@
 <script>
 export default {
   mounted() {
-    // For Loading 
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      setTimeout(() => this.$nuxt.$loading.finish(), 3000)
+    this.$store.dispatch('initDarkMode')
+  // Sistem temasını dinle
+  if (process.client) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      this.$store.commit('setDarkMode', e.matches)
     })
-    
   }
+},
 
 }
 </script>
+
+<style>
+</style>

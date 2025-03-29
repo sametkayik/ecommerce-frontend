@@ -11,10 +11,10 @@
                 style="animation-duration: 3s; animation-delay: 0.3s"
               >
                 Live For
-                <span
+                <h5
                   class="flipInX"
                   style="animation-duration: 2s; animation-delay: 0.5s"
-                  >Fashion</span
+                  >Fashion</h5
                 >
               </h1>
               <h3>Save Up To 50%</h3>

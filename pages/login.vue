@@ -40,8 +40,8 @@
                          name="password"
                          type="password"/>
                   <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
-                    <span v-if="!$v.user.password.required">Password is required</span>
-                    <span v-if="!$v.user.password.minLength">Password must be at least 6 characters</span>
+                    <h5 v-if="!$v.user.password.required">Password is required</h5>
+                    <h5 v-if="!$v.user.password.minLength">Password must be at least 6 characters</h5>
                   </div>
                 </div>
 
@@ -52,7 +52,7 @@
                 <div class="remember_area">
                   <label class="checkbox-default">
                     <input type="checkbox">
-                    <span>Remember me</span>
+                    <h5>Remember me</h5>
                   </label>
                 </div>
 

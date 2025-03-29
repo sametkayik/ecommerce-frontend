@@ -18,17 +18,62 @@ Default CSS
 =================================================*/
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
+:root {
+  --heading-color: #222222;
+  --card-bg: #ffffff;
+    --card-bg-dark: #2d2d2d;
+    --text-color: #333333;
+    --text-color-light: #f0f0f0;
+    --price-color: #d4af37;
+    --price-color-dark: #f8d030;
+    --icon-color: #555555;
+    --icon-color-dark: #cccccc;
+    --icon-bg: #f5f5f5;
+    --icon-bg-dark: #3a3a3a;
+    --btn-bg: #014dd1;
+    --btn-bg-dark: #3a7bd5;
+    --btn-text: #ffffff;
+    --btn-text-dark: #ffffff;
+    --modal-bg: #ffffff;
+    --modal-bg-dark: #2d2d2d;
+    --rating-color: #ffc107;
+    --rating-color-dark: #ffd700;
+    --variant-border: #dddddd;
+    --variant-border-dark: #555555;
+    --sticky-header-bg: #f8f5f0;
+    --sticky-header-bg-dark: #2a2a2a;
+    --sticky-header-border: #e0e0e0;
+    --sticky-header-border-dark: #444444;
+}
 
 html,
 body {
   height: 100%;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: var(--heading-color);
+}
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --header-bg: #1a1a1a;
+  --nav-bg: #393939;
+  --border-color: #444444;
+  --main-theme-color: #3a7bd5;
+  --heading-color: #ffffff;
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
@@ -55,8 +100,6 @@ img {
 
 a {
   text-decoration: none;
-  -webkit-transition: all 0.3s ease-in-out 0.1s;
-  transition: all 0.3s ease-in-out 0.1s;
   outline: 0 !important;
   color: var(---heading-color);
 }
@@ -442,13 +485,15 @@ button {
   z-index: 99;
   width: 100%;
   top: 0;
-  background: #333;
+  background-color: var(--sticky-header-bg);
+  border-bottom: 1px solid var(--sticky-header-border);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
   animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
   -webkit-transition: 0.6s;
   transition: 0.6s;
 }
+
 
 .main-menu {
   position: relative;

@@ -105,7 +105,7 @@
                 </div>
                 <div class="cart_subtotal">
                   <p>Shipping</p>
-                  <p class="cart_amount"><span>Flat Rate:</span> $25.00</p>
+                  <p class="cart_amount"><h5>Flat Rate:</h5> $25.00</p>
                 </div>
                 <a href="#">Calculate shipping</a>
 

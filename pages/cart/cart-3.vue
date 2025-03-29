@@ -136,26 +136,26 @@
                 <h5>Shipping:</h5>
                 <form action="#!" id="total_cart_form_three">
                   <label class="custom_boxed"
-                    >Free Shipping <span class="rigth_cart">$0.00</span>
+                    >Free Shipping <h5 class="rigth_cart">$0.00</h5>
                     <input type="radio" name="radio" />
-                    <span class="checkmark"></span>
+                    <h5 class="checkmark"></h5>
                   </label>
                   <label class="custom_boxed"
-                    >Standard <span class="rigth_cart">$30.00</span>
+                    >Standard <h5 class="rigth_cart">$30.00</h5>
                     <input type="radio" name="radio" />
-                    <span class="checkmark"></span>
+                    <h5 class="checkmark"></h5>
                   </label>
                   <label class="custom_boxed"
-                    >Express <span class="rigth_cart">$20.00</span>
+                    >Express <h5 class="rigth_cart">$20.00</h5>
                     <input type="radio" name="radio" />
-                    <span class="checkmark"></span>
+                    <h5 class="checkmark"></h5>
                   </label>
                   <h6 class="estimate_for_country">
                     Estimate For Your Country
                   </h6>
                 </form>
                 <div class="total_catr_three_bottom">
-                  <h5>Total Cart <span class="rigth_cart">$50.00</span></h5>
+                  <h5>Total Cart <h5 class="rigth_cart">$50.00</h5></h5>
                 </div>
                 <div class="cart_submit">
                   <a

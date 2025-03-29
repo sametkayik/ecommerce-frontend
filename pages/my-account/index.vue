@@ -91,3 +91,104 @@ export default {
 
 }
 </script>
+
+<style scoped>
+/* My Account Area Dark Mode Styles */
+#my-account_area {
+  background-color: var(--bg-secondary);
+  transition: all 0.3s ease;
+}
+
+.dashboard_tab_button {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dashboard_tab_button .nav-link {
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 20px;
+  transition: all 0.3s ease;
+}
+
+.dashboard_tab_button .nav-link:hover,
+.dashboard_tab_button .nav-link.active {
+  color: var(--primary-color);
+  background-color: var(--bg-hover);
+}
+
+.dashboard_tab_button .nav-link i {
+  margin-right: 10px;
+  color: var(--text-secondary);
+}
+
+.dashboard_content {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 30px;
+}
+
+.myaccount-content h4.title {
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.account_details_form label {
+  color: var(--text-primary);
+}
+
+.account_details_form .form-control {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.account_details_form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+.input-radio .custom-radio {
+  color: var(--text-primary);
+}
+
+.checkbox-default span {
+  color: var(--text-primary);
+}
+
+.checkbox-default-more-text em {
+  color: var(--text-secondary);
+}
+
+.invalid-feedback {
+  color: #dc3545;
+}
+
+/* Dark Mode Variables */
+:root {
+  /* Light Mode */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-hover: #f1f1f1;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --primary-color: #007bff;
+}
+
+.dark-mode {
+  /* Dark Mode */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-hover: #333333;
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  --border-color: #495057;
+  --primary-color: #4a90e2;
+}
+</style>
