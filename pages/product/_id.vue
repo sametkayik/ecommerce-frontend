@@ -436,7 +436,6 @@ export default {
   color: var(--text-secondary);
 }
 
-/* Size Variant Buttons */
 .size-variant {
   list-style: none;
   padding: 0;
@@ -451,22 +450,16 @@ export default {
 
 .size-variant button {
   padding: 5px 15px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  border: 1px solid #ddd;
+  background: #fff;
   cursor: pointer;
   border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.size-variant button:hover {
-  border-color: var(--primary-color);
 }
 
 .size-variant button.active {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-  color: white;
+  border-color: #000;
+  background: #000;
+  color: #fff;
 }
 
 /* Color Variant Buttons */
@@ -498,15 +491,7 @@ export default {
 }
 
 /* Buttons */
-.theme-btn-one {
-  background-color: var(--primary-color);
-  color: white;
-  transition: all 0.3s ease;
-}
 
-.theme-btn-one:hover {
-  background-color: var(--active-color);
-}
 
 .action.wishlist {
   color: var(--text-primary);

@@ -593,6 +593,7 @@
 }
 
 .color-variant li a {
+  border: 1px solid #000;
   position: relative;
   display: inline-block;
   height: 30px;
@@ -609,6 +610,10 @@
 
 .color-variant li.active a::after {
   content: "\f00c";
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
   position: absolute;
   font-family: "Font Awesome 5 Free";
   color: #fff;
