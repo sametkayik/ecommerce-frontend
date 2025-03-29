@@ -11,8 +11,9 @@
   "dependencies": {
     "@microsoft/signalr": "^8.0.7",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/proxy": "^2.1.0",
+    "@stripe/stripe-js": "^6.1.0",
     "apexcharts": "^3.27.3",
-    "axios": "^1.8.4",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",
@@ -27,8 +28,5 @@
     "vue-slider-component": "^3.2.14",
     "vue2-animate": "^2.1.4",
     "vuelidate": "^0.7.6"
-  },
-  "devDependencies": {
-    "@nuxt/types": "~2.18.0"
   }
 }

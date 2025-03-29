@@ -4,15 +4,15 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'AndShop',
-    titleTemplate: '%s - AndShop Ecommerce Vue js Template',
+    title: 'DefineX',
+    titleTemplate: '%s - DefineX Ecommerce Vue js Template',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'AndShop Ecommerce Vue js, Nuxt js Template' }
+      { hid: 'description', name: 'description', content: 'DefineX Ecommerce Vue js, Nuxt js Template' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -22,7 +22,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#f79837', throttle: 200, height: '3px', css: true },
+  loading: { color: '#014dd1', throttle: 200, height: '3px', css: true },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -31,6 +31,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    {src: '~/plugins/persistence.js', mode: 'client'},
     { src: '~/plugins/plugin.js', mode: 'client' },
     '~/plugins/axios.js',
     '~/plugins/signalr.js',
