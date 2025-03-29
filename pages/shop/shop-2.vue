@@ -21,13 +21,7 @@
           <div class="col-lg-6 col-md-12">
             <div class="product_filter">
               <div class="customs_selects">
-                <select class="customs_sel_box" name="product">
-                  <option value="Filter">Filter</option>
-                  <option value="most_popular">Most Popular</option>
-                  <option value="best_seller">Best Seller</option>
-                  <option value="tranding">Tranding</option>
-                  <option value="featured">Featured</option>
-                </select>
+                <SearchBar/>
               </div>
             </div>
           </div>
@@ -37,9 +31,7 @@
                 <p>Sort By:</p>
               </div>
               <div class="customs_selects">
-                <select class="customs_sel_box" name="product">
-                  <option value="popularity">Sort by Popularity</option>
-                  <option value="new">Sort by new</option>
+                <select class="customs_sel_box" name="product" v-model="selectedSort" @change="sortProducts">
                   <option value="low">Price: low to high</option>
                   <option value="high">Price: high to low</option>
                 </select>
@@ -61,7 +53,7 @@
           </div>
         </div>
         <div class="row">
-          <div v-for="(product,index) in shuffleproducts" v-show="setPaginate(index)" :key="index"
+          <div v-for="(product,index) in sortedProducts" v-show="setPaginate(index)" :key="index"
                class="col-lg-4 col-md-4 col-sm-6 col-12">
             <ProductBox1 :index="index" :product="product" @alertseconds="alert" @showalert="alert"/>
           </div>
@@ -98,7 +90,6 @@
             </div>
           </div>
           <!-- pagination end -->
-
         </div>
       </div>
     </section>
@@ -152,15 +143,18 @@
 import {mapState} from 'vuex'
 import ProductBox1 from '~/components/product-box/ProductBox1'
 import InstagramArea from '~/components/instagram/InstagramArea'
+import SearchBar from '~/components/SearchBar'
 
 export default {
   name: 'shop-three-grid',
   components: {
     ProductBox1,
-    InstagramArea
+    InstagramArea,
+    SearchBar,
   },
   data() {
     return {
+      selectedSort: 'low',
       title: 'Shop',
       dismissCountDown: 0,
 
@@ -188,7 +182,17 @@ export default {
   computed: {
     ...mapState({
       shuffleproducts: state => state.products.shuffleproducts
-    })
+    }),
+    sortedProducts() {
+      // Sorting logic based on the selected option
+      let products = [...this.shuffleproducts]; // Clone the products array to avoid direct mutation
+      if (this.selectedSort === 'low') {
+        return products.sort((a, b) => a.price - b.price);
+      } else if (this.selectedSort === 'high') {
+        return products.sort((a, b) => b.price - a.price);
+      }
+      return products; // Default sorting (by popularity or other)
+    }
   },
   mounted() {
     this.$store.dispatch('products/fetchProducts');
@@ -240,6 +244,11 @@ export default {
       }
       return this.pages
     },
+    sortProducts() {
+      // Re-trigger pagination after sorting
+      this.getPaginate();
+      this.updatePaginate(1); // Reset to the first page after sorting
+    }
   },
 
   // Page head() Title, description for SEO

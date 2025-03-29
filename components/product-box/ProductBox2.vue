@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="product_wrappers_list">
-      PRODUCT 2
       <div class="row">
         <div class="col-lg-3">
           <div class="thumb">

@@ -30,7 +30,7 @@
                   <nav>
                     <ul>
                       <li>
-                        <nuxt-link to="/shop/shop-4">Shop</nuxt-link>
+                        <nuxt-link to="/shop">Shop</nuxt-link>
                       </li>
 
                       <li>

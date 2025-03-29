@@ -21,13 +21,7 @@
           <div class="col-lg-6 col-md-12">
             <div class="product_filter">
               <div class="customs_selects">
-                <select class="customs_sel_box" name="product">
-                  <option value="Filter">Filter</option>
-                  <option value="most_popular">Most Popular</option>
-                  <option value="best_seller">Best Seller</option>
-                  <option value="tranding">Tranding</option>
-                  <option value="featured">Featured</option>
-                </select>
+                <SearchBar/>
               </div>
             </div>
           </div>
@@ -37,9 +31,7 @@
                 <p>Sort By:</p>
               </div>
               <div class="customs_selects">
-                <select class="customs_sel_box" name="product">
-                  <option value="popularity">Sort by Popularity</option>
-                  <option value="new">Sort by new</option>
+                <select class="customs_sel_box" name="product" v-model="selectedSort" @change="sortProducts">
                   <option value="low">Price: low to high</option>
                   <option value="high">Price: high to low</option>
                 </select>
@@ -61,7 +53,7 @@
           </div>
         </div>
         <div class="row">
-          <div v-for="(product,index) in shuffleproducts" v-show="setPaginate(index)" :key="index"
+          <div v-for="(product, index) in sortedProducts" v-show="setPaginate(index)" :key="index"
                class="col-lg-12 col-md-6 col-sm-6 col-12">
             <ProductBox2 :index="index" :product="product" @alertseconds="alert" @showalert="alert"/>
           </div>
@@ -73,24 +65,24 @@
                 <ul class="pagination">
                   <li class="page-item">
                     <a class="page-link" href="javascript:void(0)" @click="updatePaginate(current-1)">
-                                    <span aria-hidden="true">
-                                    <i aria-hidden="true" class="fa fa-chevron-left" style="font-size:10px;"></i>
-                                    </span>
+                      <span aria-hidden="true">
+                        <i aria-hidden="true" class="fa fa-chevron-left" style="font-size:10px;"></i>
+                      </span>
                     </a>
                   </li>
                   <li v-for="(page_index, index) in this.pages" :key="index" :class="{'active': page_index == current}"
                       class="page-item">
                     <a
                         class="page-link"
-                        href="javascrip:void(0)"
+                        href="javascript:void(0)"
                         @click.prevent="updatePaginate(page_index)"
                     >{{ page_index }}</a>
                   </li>
                   <li class="page-item">
                     <a class="page-link" href="javascript:void(0)" @click="updatePaginate(current+1)">
-                                    <span aria-hidden="true">
-                                    <i aria-hidden="true" class="fa fa-chevron-right" style="font-size:10px;"></i>
-                                    </span>
+                      <span aria-hidden="true">
+                        <i aria-hidden="true" class="fa fa-chevron-right" style="font-size:10px;"></i>
+                      </span>
                     </a>
                   </li>
                 </ul>
@@ -105,7 +97,7 @@
     <!-- Instagram Arae -->
     <InstagramArea/>
 
-    <!-- Add to cart Alert / Notification  -->
+    <!-- Add to cart Alert / Notification -->
     <b-alert
         :show="dismissCountDown"
         dismissible
@@ -116,9 +108,9 @@
     >
       <p class="font-weight-normal">Successfully added to your list</p>
     </b-alert>
-    <!-- Add to cart Alert / Notification  -->
+    <!-- Add to cart Alert / Notification -->
 
-    <!-- Add to wishlist / wishlist Notification  -->
+    <!-- Add to wishlist / wishlist Notification -->
     <b-alert
         :show="dismissCountDown"
         dismissible
@@ -129,9 +121,9 @@
     >
       <p class="font-weight-normal">Successfully added to your list</p>
     </b-alert>
-    <!-- Add to wishlist / wishlist Notification  -->
+    <!-- Add to wishlist / wishlist Notification -->
 
-    <!-- Add to Compare / Compare Notification  -->
+    <!-- Add to Compare / Compare Notification -->
     <b-alert
         :show="dismissCountDown"
         dismissible
@@ -142,7 +134,7 @@
     >
       <p class="font-weight-normal">Successfully added to your list</p>
     </b-alert>
-    <!-- Add to Compare / Compare Notification  -->
+    <!-- Add to Compare / Compare Notification -->
 
   </div>
 </template>
@@ -151,17 +143,20 @@
 import {mapState} from 'vuex'
 import ProductBox2 from '~/components/product-box/ProductBox2'
 import InstagramArea from '~/components/instagram/InstagramArea'
+import SearchBar from '~/components/SearchBar'
 
 export default {
   name: 'shop-list-view',
   components: {
     ProductBox2,
-    InstagramArea
+    InstagramArea,
+    SearchBar
   },
   data() {
     return {
       title: 'Shop',
       dismissCountDown: 0,
+      selectedSort: 'low', // Default sorting option
 
       // Breadcrumb Items Data
       breadcrumbItems: [
@@ -175,7 +170,7 @@ export default {
         }
       ],
 
-      // Paginaion
+      // Pagination
       current: 1,
       paginate: 12,
       paginateRange: 3,
@@ -187,59 +182,74 @@ export default {
   computed: {
     ...mapState({
       shuffleproducts: state => state.products.shuffleproducts
-    })
+    }),
+    sortedProducts() {
+      // Sorting logic based on the selected option
+      let products = [...this.shuffleproducts]; // Clone the products array to avoid direct mutation
+      if (this.selectedSort === 'low') {
+        return products.sort((a, b) => a.price - b.price);
+      } else if (this.selectedSort === 'high') {
+        return products.sort((a, b) => b.price - a.price);
+      }
+      return products; // Default sorting (by popularity or other)
+    }
   },
   mounted() {
     this.$store.dispatch('products/fetchProducts');
-    this.getPaginate()
-    this.updatePaginate(1)
+    this.getPaginate();
+    this.updatePaginate(1);
 
     // For scroll page top for every Route
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   },
   methods: {
-    // Product added Alert / notificaion
+    // Product added Alert / notification
     alert(item) {
-      this.dismissCountDown = item
+      this.dismissCountDown = item;
     },
     // For Pagination
     getPaginate() {
-      this.paginates = Math.round(this.shuffleproducts.length / this.paginate)
-      this.page = []
+      this.paginates = Math.round(this.shuffleproducts.length / this.paginate);
+      this.page = [];
       for (let i = 0; i < this.paginates; i++) {
-        this.pages.push(i + 1)
+        this.pages.push(i + 1);
       }
     },
     setPaginate(i) {
       if (this.current === 1) {
-        return i < this.paginate
+        return i < this.paginate;
       } else {
-        return (i >= (this.paginate * (this.current - 1)) && i < (this.current * this.paginate))
+        return i >= (this.paginate * (this.current - 1)) && i < (this.current * this.paginate);
       }
     },
     updatePaginate(i) {
-      this.current = i
-      let start = 0
-      let end = 0
+      this.current = i;
+      let start = 0;
+      let end = 0;
       if (this.current < this.paginateRange - 1) {
-        start = 1
-        end = start + this.paginateRange - 1
+        start = 1;
+        end = start + this.paginateRange - 1;
       } else {
-        start = this.current - 1
-        end = this.current + 1
+        start = this.current - 1;
+        end = this.current + 1;
       }
       if (start < 1) {
-        start = 1
+        start = 1;
       }
       if (end > this.paginates) {
-        end = this.paginates
+        end = this.paginates;
       }
-      this.pages = []
+      this.pages = [];
       for (let i = start; i <= end; i++) {
-        this.pages.push(i)
+        this.pages.push(i);
       }
-      return this.pages
+      return this.pages;
     },
+    sortProducts() {
+      // Re-trigger pagination after sorting
+      this.getPaginate();
+      this.updatePaginate(1); // Reset to the first page after sorting
+    }
   },
 
   // Page head() Title, description for SEO
@@ -257,3 +267,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* Custom styles for your components */
+</style>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    PRODUCT 3
     <div class="product_box text-center">
       <div class="product_img">
         <nuxt-link :to="{ path: '/product/'+product.id }">

@@ -20,15 +20,9 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <div class="product_filter">
-                        <div class="customs_selects">
-                            <select name="product" class="customs_sel_box" @change="randomProduct">
-                                <option value="Filter">Filter</option>
-                                <option value="most_popular">Most Popular</option>
-                                <option value="best_seller">Trend</option>
-                                <option value="tranding">Tranding</option>
-                                <option value="featured">Featured</option>
-                            </select>
-                        </div>
+                      <div class="customs_selects">
+                        <SearchBar/>
+                      </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
@@ -37,12 +31,10 @@
                             <p>Sort By:</p>
                         </div>
                         <div class="customs_selects">
-                            <select name="product" class="customs_sel_box" @change="randomProduct">
-                                <option value="popularity">Sort by Popularity</option>
-                                <option value="new">Sort by new</option>
-                                <option value="low">Price: low to high</option>
-                                <option value="high">Price: high to low</option>
-                            </select>
+                          <select class="customs_sel_box" name="product" v-model="selectedSort" @change="sortProducts">
+                            <option value="low">Price: low to high</option>
+                            <option value="high">Price: high to low</option>
+                          </select>
                         </div>
                         <div class="product_shot_view">
                             <ul>
@@ -55,7 +47,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="(product,index) in shuffleproducts" :key="index" v-show="setPaginate(index)">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="(product,index) in sortedProducts" :key="index" v-show="setPaginate(index)">
                     <ProductBox1 :product="product" :index="index" @showalert="alert" @alertseconds="alert" />
                 </div>
 
@@ -144,15 +136,18 @@
 import { mapState } from 'vuex'
 import ProductBox1 from '~/components/product-box/ProductBox1'
 import InstagramArea from '~/components/instagram/InstagramArea'
+import SearchBar from '~/components/SearchBar'
 
 export default {
     name: 'shop-four-grid',
     components: {
         ProductBox1,
-        InstagramArea
+        InstagramArea,
+        SearchBar,
     },
     data() {
         return {
+          selectedSort: 'low',
             title: 'Shop',
             dismissCountDown: 0,
 
@@ -181,9 +176,20 @@ export default {
         ...mapState({
             shuffleproducts: state => state.products.shuffleproducts
         }),
+      sortedProducts() {
+        // Sorting logic based on the selected option
+        let products = [...this.shuffleproducts]; // Clone the products array to avoid direct mutation
+        if (this.selectedSort === 'low') {
+          return products.sort((a, b) => a.price - b.price);
+        } else if (this.selectedSort === 'high') {
+          return products.sort((a, b) => b.price - a.price);
+        }
+        return products; // Default sorting (by popularity or other)
+      }
 
     },
     mounted() {
+        this.$store.dispatch('products/fetchProducts');
         this.getPaginate()
         this.updatePaginate(1)
         
@@ -234,17 +240,11 @@ export default {
             }
             return this.pages
         },
-        // For Shop Left Shorting and Up Shorting 
-        randomProduct(){
-            let array = this.shuffleproducts;
-            for (var i = array.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-            this.$store.dispatch('products/shuffleProduct', array.slice(0, 30))  
-        }
+      sortProducts() {
+        // Re-trigger pagination after sorting
+        this.getPaginate();
+        this.updatePaginate(1); // Reset to the first page after sorting
+      }
     },
 
     // Page head() Title, description for SEO
