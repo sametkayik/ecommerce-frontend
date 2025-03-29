@@ -8,54 +8,42 @@
                     <div class="footer_left_side">
                         <nuxt-link to="/"><img :src="require('@/assets/img/logo.png')" alt="logo" /></nuxt-link>
                         <p>
-                            BT SHOP çok satıcılı bir B2C hızlı e-ticaret şirketidir. Şirket ağırlıklı olarak erkek, kadın ve çocuk giyimine odaklanmaktadır. ama aynı zamanda başka giysiler, giysiler, aksesuarlar, ayakkabılar, çantalar ve diğer moda ürünleri de sunuyoruz.
+                          DefineX is a new generation consulting house and a venture builder that designs and builds the enablers of digital acceleration for the world. Founded by former teams from a leading Global Consulting Company, DefineX emerged in 2019 to define the next and revolutionize the consulting landscape with a fresh, new way of thinking.
                         </p>
                         <div class="footer_left_side_icon">
-                            <ul>
-                                <li>
-                                    <a href="#!"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#!"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#!"><i class="fab fa-linkedin"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#!"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#!"><i class="fab fa-google-plus-g"></i></a>
-                                </li>
-                            </ul>
+                          <ul>
+                            <li><a href="https://x.com/DefinexGlobal"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/definex-consulting-technology-labs/"><i class="fab fa-linkedin"></i></a></li>
+                            <li><a href="https://www.instagram.com/teamdefinex/"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://www.youtube.com/@teamdefineX"><i class="fab fa-youtube"></i></a></li>
+                          </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="footer_one_widget">
-                        <h3>BİLGİ</h3>
+                        <h3>Information</h3>
                         <ul>
-                            <li><nuxt-link to="/">Anasayfa</nuxt-link></li>
-                            <li><nuxt-link to="/about-us">Hakkımızda</nuxt-link></li>
-                            <li><nuxt-link to="/my-account/order-tracking">Sipariş Takibi</nuxt-link></li>
+                            <li><nuxt-link to="/">Home Page</nuxt-link></li>
+                            <li><nuxt-link to="/about-us">About Us</nuxt-link></li>
                         </ul>
                     </div>
                 </div>
  
                 <div class="col-lg-3 col-md-12 col-sm-12 col-12">
                     <div class="footer_one_widget">
-                        <h3>BÜLTEN</h3>
+                        <h3>Subscribe to Feed</h3>
                         <div id="mc_embed_signup" class="subscribe-form">
                             <form @submit.prevent="handleSubmit">
                                 <div class="mc-form">
-                                    <input class="form-control" type="email" v-model="user.email" id="email" name="email" placeholder="Email Adresiniz" :class="{ 'is-invalid': submitted && $v.user.email.$error }" />
+                                    <input class="form-control" type="email" v-model="user.email" id="email" name="email" placeholder="Email address" :class="{ 'is-invalid': submitted && $v.user.email.$error }" />
                                     <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
                                         <span v-if="!$v.user.email.required">Email is required</span>
                                         <span v-if="!$v.user.email.email">Email is invalid</span>
                                     </div>
                                     <div class="clear">
                                         <button class="theme-btn-one btn_md" name="subscribe">
-                                            <i class="icon-cursor"></i> Email Gönder
+                                            <i class="icon-cursor"></i> Send email
                                         </button>
                                     </div>
                                 </div>

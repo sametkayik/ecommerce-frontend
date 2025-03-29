@@ -138,34 +138,6 @@ export default {
           {
               id: 5,
               instagramImg: require('@/assets/img/instagram/post6.png')
-          },
-          {
-              id: 6,
-              instagramImg: require('@/assets/img/instagram/post7.png')
-          },
-          {
-              id: 7,
-              instagramImg: require('@/assets/img/instagram/post8.png')
-          },
-          {
-              id: 8,
-              instagramImg: require('@/assets/img/instagram/post9.png')
-          },
-          {
-              id: 9,
-              instagramImg: require('@/assets/img/instagram/post10.png')
-          },
-          {
-              id: 10,
-              instagramImg: require('@/assets/img/instagram/post11.png')
-          },
-          {
-              id: 11,
-              instagramImg: require('@/assets/img/instagram/post12.png')
-          },
-          {
-              id: 12,
-              instagramImg: require('@/assets/img/instagram/post1.png')
           }
       ]
 

@@ -25,48 +25,21 @@
                 <div class="main-menu menu-color--black menu-hover-color--golden">
                   <nav>
                     <ul>
-                      <li class="has-dropdown">
-                        <a href="#">Kategoriler <i class="fa fa-angle-down"></i></a>
-                        <!-- Sub Menu -->
-                        <ul class="sub-menu">
-                          <li>
-                            <nuxt-link to="/shop/shop-4">Filtrele</nuxt-link>
-                          </li>
-
-                        </ul>
+                      <li>
+                        <nuxt-link to="/shop/shop-4">Shop</nuxt-link>
                       </li>
 
 
-                      <li class="has-dropdown">
-                        <a href="#">Hakkımızda <i class="fa fa-angle-down"></i></a>
-                        <!-- Sub Menu -->
-                        <ul class="sub-menu">
-                          <li>
-                            <nuxt-link to="/about-us">Biz Kimiz</nuxt-link>
-                          </li>
-
-                        </ul>
+                      <li>
+                        <nuxt-link to="/about-us">About Us</nuxt-link>
                       </li>
 
-                      <li class="has-dropdown">
-                        <a href="#">Bize Ulaşın <i class="fa fa-angle-down"></i></a>
-                        <!-- Sub Menu -->
-                        <ul class="sub-menu">
-                          <li>
-                            <nuxt-link to="/contact-us">Bize Ulaşın</nuxt-link>
-                          </li>
-
-                        </ul>
+                      <li>
+                          <nuxt-link to="/contact-us">Contact Us</nuxt-link>
                       </li>
-                      <li class="has-dropdown">
-                        <a href="#">Hesabım <i class="fa fa-angle-down"></i></a>
-                        <!-- Sub Menu -->
-                        <ul class="sub-menu">
-                          <li>
-                            <nuxt-link to="/my-account">Detaylar</nuxt-link>
-                          </li>
 
-                        </ul>
+                      <li>
+                        <nuxt-link to="/my-account">Dashboard</nuxt-link>
                       </li>
                     </ul>
                   </nav>
@@ -189,35 +162,41 @@
       <div class="mobile-contact-info">
         <address class="address">
           <img :src="require('@/assets/img/logo-white.png')" alt="logo"/>
-          <span>Adres: İstanbul / Bahçeşehir</span>
-          <span>Bizi Arayın: 0212 352 05 22, 0123456789</span>
-          <span>Email: info@opendart.com</span>
+          <ul>
+            <li class="address_location">
+              <p>Kuruçeşme Mahallesi Arnavutköy Kuruçeşme Caddesi No 3/4 Beşiktaş/İstanbul</p>
+            </li>
+            <br/>
+            <li class="address_location">
+              <div class="contact_widget">
+                <a href="tel:2129425060">(0212) 942 50 60</a>
+              </div>
+              <br/>
+            </li>
+            <li class="address_location">
+              <div class="contact_widget">
+                <a href="mailto:talentacquisition@teamdefinex.com">talentacquisition@teamdefinex.com</a>
+              </div>
+            </li>
+          </ul>
         </address>
 
         <ul class="social-link">
-          <li>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-          </li>
+            <li><a href="https://x.com/DefinexGlobal"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/company/definex-consulting-technology-labs/"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/teamdefinex/"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.youtube.com/@teamdefineX"><i class="fab fa-youtube"></i></a></li>
         </ul>
 
         <ul class="user-link">
           <li>
-            <nuxt-link to="/my-account/wishlist">Favoriler</nuxt-link>
+            <nuxt-link to="/my-account/wishlist">Favorites</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/cart/">Sepet</nuxt-link>
+            <nuxt-link to="/cart/">Cart</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/my-account/checkout-1">Siparişi Tamamla</nuxt-link>
+            <nuxt-link to="/my-account/checkout-1">Complete Order</nuxt-link>
           </li>
         </ul>
       </div>
@@ -228,7 +207,7 @@
     <!-- Start Offcanvas Addcart Section -->
     <b-sidebar id="offcanvas-add-cart" backdrop class="offcanvas-add-cart-section" right>
       <div class="offcanvas-add-cart-wrapper">
-        <h4 class="offcanvas-title">Alışveriş Sepeti</h4>
+        <h4 class="offcanvas-title">Shopping Cart</h4>
         <div v-if="cart.length">
           <ul class="offcanvas-cart">
             <li v-for="(item, index) in cart" :key="item.variantId || index" class="offcanvas-cart-item-single">
@@ -242,10 +221,9 @@
                     }}
                   </nuxt-link>
 
-                  <!-- Varyant bilgilerini göster -->
                   <div v-if="item.color || item.size" class="variant-info">
                     <span v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></span>
-                    <span v-if="item.size">Beden: {{ item.size }}</span>
+                    <span v-if="item.size">Size: {{ item.size }}</span>
                   </div>
 
                   <div class="offcanvas-cart-item-details">
@@ -266,18 +244,16 @@
           </ul>
 
           <div class="offcanvas-cart-total-price">
-            <span class="offcanvas-cart-total-price-text">Toplam:</span>
+            <span class="offcanvas-cart-total-price-text">Total:</span>
             <span class="offcanvas-cart-total-price-value">${{ cartTotal.toFixed(2) }}</span>
           </div>
 
           <ul class="offcanvas-cart-action-button">
             <li>
-              <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/cart">Sepeti Görüntüle</nuxt-link>
+              <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/cart">Go to Cart</nuxt-link>
             </li>
             <li>
-              <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/my-account/checkout-1">Siparişi
-                Tamamla
-              </nuxt-link>
+              <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/my-account/checkout-1">Complete Order</nuxt-link>
             </li>
           </ul>
         </div>
@@ -292,7 +268,7 @@
     <!-- Start Offcanvas Wishlist Sidebar Section -->
     <b-sidebar id="offcanvas-wishlish" backdrop class="offcanvas-add-cart-section" right>
       <div class="offcanvas-wishlist-wrapper">
-        <h4 class="offcanvas-title">Favoriler</h4>
+        <h4 class="offcanvas-title">Favorites</h4>
         <div v-if="wishlist.length">
           <ul class="offcanvas-wishlist">
             <li v-for="(item, index) in wishlist" :key="index" class="offcanvas-wishlist-item-single">
@@ -327,13 +303,13 @@
           <ul class="offcanvas-wishlist-action-button">
             <li>
               <nuxt-link class="theme-btn-one btn-black-overlay btn_md" to="/my-account/wishlist">
-                Favorileri Görüntüle
+                Go to Favorites
               </nuxt-link>
             </li>
           </ul>
         </div>
         <ul v-else class="offcanvas-wishlist">
-          <li>Hiç favori ürününüz yok!</li>
+          <li>You don't have any favorite products!</li>
         </ul>
       </div>
     </b-sidebar>
@@ -352,8 +328,8 @@
           h-100
         ">
         <form class="d-flex flex-column justify-content-center product-search-form">
-          <input v-model="searchString" placeholder="Ürün adı yazınız..." type="search" @keyup="searchProduct"/>
-          <button class="btn btn-lg btn-golden">Ara</button>
+          <input v-model="searchString" placeholder="Product search" type="search" @keyup="searchProduct"/>
+          <button class="btn btn-lg btn-golden">Search</button>
 
           <!-- Show search product here -->
           <ul v-if="searchItems.length" class="search-results-wrap">

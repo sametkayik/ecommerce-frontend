@@ -33,7 +33,7 @@
             title="Add To Cart"
             @click="addToCart(product)"
         >
-          Sepete Ekle
+          Add to Cart
         </button>
       </div>
 
@@ -266,7 +266,7 @@ export default {
 
     addToCart(product) {
       if (!this.selectedSize && this.product.variants?.length > 0) {
-        this.$toast.warning('Lütfen beden seçiniz');
+        this.$toast.warning('Please select size!');
         this.showQuickOptions = true;
         return;
       }

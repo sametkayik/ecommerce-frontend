@@ -76,11 +76,10 @@
         <h3 class="sidebar-title">Follow Us</h3>
         <div class="follwos_icons">
             <ul>
-                <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a href="https://x.com/DefinexGlobal"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/definex-consulting-technology-labs/"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com/teamdefinex/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/@teamdefineX"><i class="fab fa-youtube"></i></a></li>
             </ul>
         </div>
     </div>
@@ -154,34 +153,6 @@ export default {
               id: 5,
               instagramImg: require('@/assets/img/instagram/post6.png')
           },
-          {
-              id: 6,
-              instagramImg: require('@/assets/img/instagram/post7.png')
-          },
-          {
-              id: 7,
-              instagramImg: require('@/assets/img/instagram/post8.png')
-          },
-          {
-              id: 8,
-              instagramImg: require('@/assets/img/instagram/post9.png')
-          },
-          {
-              id: 9,
-              instagramImg: require('@/assets/img/instagram/post10.png')
-          },
-          {
-              id: 10,
-              instagramImg: require('@/assets/img/instagram/post11.png')
-          },
-          {
-              id: 11,
-              instagramImg: require('@/assets/img/instagram/post12.png')
-          },
-          {
-              id: 12,
-              instagramImg: require('@/assets/img/instagram/post1.png')
-          }
       ]
 
     }

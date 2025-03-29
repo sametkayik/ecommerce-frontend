@@ -20,21 +20,23 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="about_top_img">
-                            <img src="~/assets/img/common/img-about.jpg" alt="img">
+                            <img src="~/assets/img/common/img-about.png" alt="img">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="about_top_left_content">
-                            <h2>ABOUT OUR Andshop STORE</h2>
-                            <h4>We believe that every project existing in digital world is a result of an idea and every idea has a cause.</h4>
-                            <p>For this reason, our each design serves an idea. Our strength in design is reflected by our name, our care for details.
-                                Our specialist won't be afraid to go extra miles just to approach near perfection. We don't require everything to be perfect,
-                                but we need them to be perfectly cared for. </p>
-                            <p>That's a reason why we are willing to give contributions at best.Not a single detail is missed out under Billey's 
-                                professional eyes. The amount of dedication and effort equals to the level of passion and determination. 
-                                Get better, together as one. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec,
-                                egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, 
-                                porttitor at sem. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+                            <h2>About DefineX</h2>
+                            <h4>We are defining next.</h4>
+                            <p>DefineX is a new generation consulting house and a venture builder that designs and builds the enablers of digital acceleration for the world.
+                              Founded by former teams from a leading Global Consulting Company, DefineX emerged in 2019 to define the next
+                              and revolutionize the consulting landscape with a fresh, new way of thinking.</p>
+                              <br/>
+                              <br/>
+                            <p>We help our clients stay ahead by reinventing themselves in the age of digital disruption. Our vision is to
+                              serve the business world through agendas designed to bring impactful solutions to pressing business problems.
+                              We help our clients solve new business problems, create disruptive products, and integrate next-generation digital solutions.
+                              With a track record of shaping visionary strategies, solving challenging business issues, designing innovative solutions,
+                              and delivering technology transformation projects, we are known for our industry expertise and rigorous focus on client success.</p>
                         </div>
                     </div>
                 </div>
@@ -144,8 +146,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="center_heading">
-                            <h2>Expert Team</h2>
-                            <p>Mauris luctus nisi sapien tristique dignissim  ornare</p>       
+                            <h2>Our Expert Team</h2>
+                            <p>Our staff, each of whom is an expert in their field</p>
                         </div>
                     </div>
                 </div>
@@ -156,18 +158,16 @@
 
                             <div class="team-single">
                                 <div class="team-img">
-                                    <img src="~/assets/img/team/team4.png" alt="img">
+                                    <img src="~/assets/img/team/team5.png" alt="img">
                                 </div>
                                 <div class="team-content">
-                                    <h4 class="team-name font--bold">Ms. Sandela</h4>
-                                    <span class="team-title">CEO</span>
-                                    <ul class="team-social pos-absolute">
-                                            <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-                                    </ul>
+                                    <h4 class="team-name font--bold">Abdulsamet Kıyak</h4>
+                                    <span class="team-title">Backend Developer</span>
+                                  <ul class="team-social pos-absolute">
+                                    <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.instagram.com/sametkayk/"><i class="fab fa-instagram"></i></a></li>
+                                  </ul>
                                 </div>
                             </div>
                             <div class="team-single">
@@ -175,14 +175,12 @@
                                     <img src="~/assets/img/team/team1.png" alt="img">
                                 </div>
                                 <div class="team-content">
-                                    <h4 class="team-name font--bold">Mr. Heroas</h4>
-                                    <span class="team-title">Head Of Markating</span>
+                                    <h4 class="team-name font--bold">Samet Kıyak</h4>
+                                    <span class="team-title">Frontend Developer</span>
                                     <ul class="team-social pos-absolute">
-                                        <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
+                                      <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
+                                      <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
+                                      <li><a href="https://www.instagram.com/sametkayk/"><i class="fab fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -191,15 +189,13 @@
                                     <img src="~/assets/img/team/team2.png" alt="img">
                                 </div>
                                 <div class="team-content">
-                                    <h4 class="team-name font--bold">Ms. Raka</h4>
-                                    <span class="team-title">Admin</span>
-                                    <ul class="team-social pos-absolute">
-                                            <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-                                    </ul>
+                                    <h4 class="team-name font--bold">Abdulsamet Kayıkçı</h4>
+                                    <span class="team-title">Database Administrator</span>
+                                  <ul class="team-social pos-absolute">
+                                    <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.instagram.com/sametkayk/"><i class="fab fa-instagram"></i></a></li>
+                                  </ul>
                                 </div>
                             </div>
                             <div class="team-single">
@@ -207,15 +203,13 @@
                                     <img src="~/assets/img/team/team3.png" alt="img">
                                 </div>
                                 <div class="team-content">
-                                    <h4 class="team-name font--bold">Ms. Valona</h4>
-                                    <span class="team-title">Manager</span>
-                                    <ul class="team-social pos-absolute">
-                                            <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-                                    </ul>
+                                    <h4 class="team-name font--bold">Samet Kıyakçı</h4>
+                                    <span class="team-title">UI/UX Designer</span>
+                                  <ul class="team-social pos-absolute">
+                                    <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.instagram.com/sametkayk/"><i class="fab fa-instagram"></i></a></li>
+                                  </ul>
                                 </div>
                             </div>
                             <div class="team-single">
@@ -223,31 +217,27 @@
                                     <img src="~/assets/img/team/team4.png" alt="img">
                                 </div>
                                 <div class="team-content">
-                                    <h4 class="team-name font--bold">Ms. Sandela</h4>
-                                    <span class="team-title">CEO</span>
-                                    <ul class="team-social pos-absolute">
-                                            <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-                                    </ul>
+                                    <h4 class="team-name font--bold">Abdulsamet Kayık</h4>
+                                    <span class="team-title">Fullstack Developer</span>
+                                  <ul class="team-social pos-absolute">
+                                    <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.instagram.com/sametkayk/"><i class="fab fa-instagram"></i></a></li>
+                                  </ul>
                                 </div>
                             </div>
                             <div class="team-single">
                                 <div class="team-img">
-                                    <img src="~/assets/img/team/team1.png" alt="img">
+                                    <img src="~/assets/img/team/team6.png" alt="img">
                                 </div>
                                 <div class="team-content">
-                                    <h4 class="team-name font--bold">Mr. Heroas</h4>
-                                    <span class="team-title">Head Of Markating</span>
-                                    <ul class="team-social pos-absolute">
-                                        <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-linkedin"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-                                    </ul>
+                                    <h4 class="team-name font--bold">Samet Kayık</h4>
+                                    <span class="team-title">DevOps Engineer</span>
+                                  <ul class="team-social pos-absolute">
+                                    <li><a href="https://www.github.com/sametkayik"><i class="fab fa-github"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/sametkayik"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="https://www.instagram.com/sametkayk/"><i class="fab fa-instagram"></i></a></li>
+                                  </ul>
                                 </div>
                             </div>
                         </carousel>
@@ -300,7 +290,7 @@ export default {
           {
             hid: 'description',
             name: 'description',
-            content: 'About Us page - AndShop Ecommerce Vue js, Nuxt js Template'
+            content: 'About Us page - DefineX Ecommerce Vue js, Nuxt js Template'
           }
         ]
       }

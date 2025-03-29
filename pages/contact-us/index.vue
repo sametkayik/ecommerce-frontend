@@ -21,13 +21,10 @@
                     <div class="col-lg-12">
                         <div class="contact_info">
                             <h3>Contact Information</h3>
-                            <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. 
-                                Proin eget tortor risus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo,
-                                    lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta.
-                                    Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
+                            <p>DefineX is a new generation consulting house and a venture builder that designs and builds the enablers of digital acceleration for the world. Founded by former teams from a leading Global Consulting Company, DefineX emerged in 2019 to define the next and revolutionize the consulting landscape with a fresh, new way of thinking.</p>
+                        <br/>
+                          <p>We help our clients stay ahead by reinventing themselves in the age of digital disruption. Our vision is to serve the business world through agendas designed to bring impactful solutions to pressing business problems.
+                          We help our clients solve new business problems, create disruptive products, and integrate next-generation digital solutions. With a track record of shaping visionary strategies, solving challenging business issues, designing innovative solutions, and delivering technology transformation projects, we are known for our industry expertise and rigorous focus on client success.</p>
                         </div>
                     </div>
                 </div>
@@ -37,20 +34,18 @@
                             <ul>
                                 <li class="address_location">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <p>32, Choto Mirzapur, Ahsan Ahmed Road Khulna 9100, Bangladesh</p>
+                                    <p>Kuruçeşme Mahallesi Arnavutköy Kuruçeşme Caddesi No 3/4 Beşiktaş/İstanbul</p>
                                 </li>
                                 <li class="address_location">
                                     <i class="fas fa-phone-volume"></i>
                                     <div class="contact_widget">
-                                        <a href="tel:2873077">+1 (833) 287-3077</a>
-                                        <a href="tel:2873077">+1 (833) 528-8619</a>
+                                        <a href="tel:2129425060">(0212) 942 50 60</a>
                                     </div>
                                 </li>
                                 <li class="address_location">
                                     <i class="far fa-envelope"></i>
                                     <div class="contact_widget">
-                                        <a href="mailto:demo@gmail.com">demo@gmail.com</a>
-                                        <a href="mailto:demo@gmail.com">demo@gmail.com</a>
+                                        <a href="mailto:talentacquisition@teamdefinex.com">talentacquisition@teamdefinex.com</a>
                                     </div>
                                 </li>
                             </ul>
@@ -111,7 +106,9 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="map_area">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3677.6962663570607!2d89.56355961427838!3d22.813715829827952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff901efac79b59%3A0x5be01a1bc0dc7eba!2sAnd+IT!5e0!3m2!1sen!2sbd!4v1557901943656!5m2!1sen!2sbd" ></iframe>
+                          <iframe
+                              src="https://www.openstreetmap.org/export/embed.html?bbox=29.03081%2C41.05842%2C29.04081%2C41.06242&layer=mapnik&marker=41.06042,29.03581">
+                          </iframe>
                         </div>
                     </div>
                 </div>

@@ -87,7 +87,7 @@
                 <p>{{ getDetail.description }}</p>
 
                 <div class="variable-single-item">
-                  <span>Beden</span>
+                  <span>Size</span>
                   <ul class="size-variant d-flex">
                     <li v-for="sizeOption in size" :key="sizeOption">
                       <button :class="{ active: selectedSize === sizeOption }" @click="changeSizeVariant(sizeOption)">
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="variable-single-item">
-                  <span>Renk</span>
+                  <span>Color</span>
                   <ul class="color-variant d-flex">
                     <li v-for="(variant, index) in Color(getDetail.variants)" :key="index"
                         :class="{ active: activeColor === variant }">
@@ -288,14 +288,14 @@ export default {
     },
     addToCart() {
       if (!this.selectedSize) {
-        alert('Lütfen beden seçiniz!');
+        alert('Please select size!');
         return;
       }
       const selectedVariant = this.getDetail.variants.find(
           v => v.color === this.activeColor && v.size === this.selectedSize
       );
       if (!selectedVariant) {
-        alert('Geçersiz varyant!');
+        alert('Invalid variant!');
         return;
       }
       this.$store.dispatch('cart/addToCart', {
@@ -311,14 +311,14 @@ export default {
     },
     addToWishlist() {
       if (!this.selectedSize) {
-        alert('Lütfen beden seçiniz!');
+        alert('Please select size!');
         return;
       }
       const selectedVariant = this.getDetail.variants.find(
           v => v.color === this.activeColor && v.size === this.selectedSize
       );
       if (!selectedVariant) {
-        alert('Geçersiz varyant kombinasyonu!');
+        alert('Invalid variant!');
         return;
       }
       const wishlistItem = {

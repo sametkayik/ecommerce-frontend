@@ -18,8 +18,8 @@
                 >
               </h1>
               <h3>Save Up To 50%</h3>
-              <nuxt-link to="/shop/shop-3" class="theme-btn-one bg-black btn_md"
-                >Satın Al</nuxt-link
+              <nuxt-link to="/shop/shop-4" class="theme-btn-one bg-black btn_md"
+                >Shop Now</nuxt-link
               >
             </div>
           </div>
@@ -45,24 +45,24 @@
             <div class="product_variation_one_boxed img-zoom-hover">
               <img :src="require('@/assets/img/offer/woman.png')" alt="img" />
               <div class="product_var_one_text">
-                <h4 class="color_one">GİYİM</h4>
-                <h2>YENİ</h2>
-                <h4>Koleksiyon</h4>
+                <h4 class="color_one">CLOTHING</h4>
+                <h2>NEW</h2>
+                <h4>Collection</h4>
                 <nuxt-link
-                  to="/shop/shop-2"
-                  class="theme-btn-one bg-black btn_sm"
-                  >Satın Al</nuxt-link
+                    to="/shop/shop-2"
+                    class="theme-btn-one bg-black btn_sm"
+                >Shop Now</nuxt-link
                 >
               </div>
             </div>
             <div class="product_variation_one_boxed img-zoom-hover">
               <img :src="require('@/assets/img/offer/woman1.png')" alt="img" />
               <div class="product_var_one_text">
-                <h4 class="color_one">Yaz</h4>
-                <h2>GÜNCEL</h2>
-                <h4>Koleksiyon</h4>
+                <h4 class="color_one">Summer</h4>
+                <h2>UPDATED</h2>
+                <h4>Collection</h4>
                 <nuxt-link to="/shop" class="theme-btn-one bg-black btn_sm"
-                  >Satın Al</nuxt-link
+                >Shop Now</nuxt-link
                 >
               </div>
             </div>
@@ -71,12 +71,12 @@
             <div class="product_variation_one_boxed img-zoom-hover">
               <img :src="require('@/assets/img/offer/bag.png')" alt="img" />
               <div class="product_var_one_text_center">
-                <h2 class="color_one">10% İNDİRİM</h2>
-                <h4>SEÇİLİ ÜRÜNLER</h4>
+                <h2 class="color_one">10% DISCOUNT</h2>
+                <h4>SELECTED PRODUCTS</h4>
                 <nuxt-link
-                  to="/shop/shop-3"
-                  class="theme-btn-one bg-black btn_sm"
-                  >Satın Al</nuxt-link
+                    to="/shop/shop-3"
+                    class="theme-btn-one bg-black btn_sm"
+                >Shop Now</nuxt-link
                 >
               </div>
             </div>
@@ -85,22 +85,22 @@
             <div class="product_variation_one_boxed img-zoom-hover">
               <img :src="require('@/assets/img/offer/woman4.png')" alt="img" />
               <div class="product_var_one_text">
-                <h2>YENİ</h2>
-                <h4 class="color_one">YAZ FIRSATLARI</h4>
+                <h2>NEW</h2>
+                <h4 class="color_one">SUMMER DEALS</h4>
                 <nuxt-link
-                  to="/shop/shop-2"
-                  class="theme-btn-one bg-black btn_sm"
-                  >Satın Alanlar</nuxt-link
+                    to="/shop/shop-2"
+                    class="theme-btn-one bg-black btn_sm"
+                >Shop Now</nuxt-link
                 >
               </div>
             </div>
             <div class="product_variation_one_boxed img-zoom-hover">
               <img :src="require('@/assets/img/offer/kids.png')" alt="img" />
               <div class="product_var_one_text">
-                <h2>ÇOCUK</h2>
-                <h4 class="color_one">KOLEKSİYON</h4>
+                <h2>KIDS</h2>
+                <h4 class="color_one">COLLECTION</h4>
                 <nuxt-link to="/shop" class="theme-btn-one bg-black btn_sm"
-                  >Satın Al</nuxt-link
+                >Shop Now</nuxt-link
                 >
               </div>
             </div>
@@ -115,8 +115,8 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="center_heading">
-              <h2>YENİ ÜRÜNLER</h2>
-              <p>Herkesin BT Shop tan Alışveriş Yaptığını Görün</p>
+              <h2>NEW PRODUCTS</h2>
+              <p>Everybody wants to shopping from DefineX</p>
             </div>
           </div>
         </div>

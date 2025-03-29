@@ -241,6 +241,9 @@ ul li {
   background-image: url('../img/common/common_bg.png');
   padding: 90px 0;
   background-repeat: no-repeat;
+  background-size: cover; /* Görseli tamamen yayıyor */
+  background-position: center; /* Ortalıyor */
+  width: 100%; /* Genişliği tamamen kaplaması için */
 }
 
 .common_banner_text {
@@ -1877,7 +1880,7 @@ button {
    Banner Area 
 ---------------------------*/
 #banner_one {
-  background-image: url('../img/common/banner_3.jpg');
+  background-image: url('../img/common/banner-3.png');
   padding: 200px 0;
   display: flex;
   align-items: center;
@@ -2091,6 +2094,7 @@ button {
   max-width: 100%;
   transition: all 0.3s ease 0s;
   width: 100%;
+  height: 390px;
 }
 
 .product_wrappers_one .thumb .image img.hover-image {
@@ -2135,7 +2139,7 @@ button {
 }
 
 .product_wrappers_one .thumb .badges span.sale {
-  background-color: #ff7004;
+  background-color: #014dd1;
 }
 
 .product_wrappers_one .thumb .actions {
@@ -2177,12 +2181,12 @@ button {
 }
 
 .product_wrappers_one .thumb .actions .action.active {
-  color: #ff7004;
+  color: #014dd1;
 }
 
 .product_wrappers_one .thumb .actions .action:hover:not(.active) {
   color: #fff;
-  background-color: #ff7004;
+  background-color: #014dd1;
 }
 
 .product_wrappers_one .thumb .add-to-cart {
@@ -2211,7 +2215,7 @@ button {
 }
 
 .product_wrappers_one .thumb .add-to-cart:hover {
-  color: #ff7004;
+  color: #014dd1;
 }
 
 .product_wrappers_one .content {
@@ -2300,7 +2304,7 @@ button {
 }
 
 .product_wrappers_one:hover .content .title a:hover {
-  color: #ff7004;
+  color: #014dd1;
 }
 
 /* -------------------------
@@ -4116,6 +4120,9 @@ button {
 
 .team-img img {
   margin: 0 auto;
+  width: 150px;
+  height: 400px;
+  object-fit: cover;
 }
 
 .team-social {
@@ -4794,7 +4801,7 @@ table {
 .erorr_wrapper h1 {
   font-weight: 200;
   font-size: 200px;
-  text-shadow: 2px 8px 5px #f7983747;
+  text-shadow: 2px 8px 5px #014dd1;
   font-style: italic;
   line-height: 165px;
 }
@@ -5443,7 +5450,7 @@ table {
   bottom: -1px;
   width: 60px;
   height: 2px;
-  background: #ff7004;
+  background: #014dd1;
 }
 
 .left-sidebar button {
@@ -5944,7 +5951,7 @@ table {
 -----------------------------------*/
 .vendor_top_box {
   text-align: center;
-  border: 1px solid #f79837;
+  border: 1px solid #014dd1;
   padding: 20px 0;
   box-shadow: 3px 5px 7px 1px #00000014;
   transition: .4s all ease-in-out;
@@ -6859,7 +6866,7 @@ table {
 #pharmacy_banner {
   padding: 80px 0 50px 0;
   position: relative;
-  background: #f798371c;
+  background: #014dd1;
 }
 
 .pharmacy_banner_img img {
@@ -7009,7 +7016,7 @@ table {
 
 .pharmacy_product_text p del {
   padding-left: 10px;
-  color: #f798378c;
+  color: #014dd1;
 }
 
 .pharmacy_product_icon {

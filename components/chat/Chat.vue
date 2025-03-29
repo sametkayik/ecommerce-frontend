@@ -12,7 +12,7 @@
       <input
           v-model="message"
           class="chat-input"
-          placeholder="Mesajınızı yazın..."
+          placeholder="Sent a message..."
           @keyup.enter="sendMessage"
       />
     </div>
@@ -72,7 +72,7 @@ export default {
 
 .chat-title {
   text-align: center;
-  background: #f79837;
+  background: #014dd1;
   color: white;
   padding: 10px;
   margin: 0;

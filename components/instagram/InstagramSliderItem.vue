@@ -1,6 +1,6 @@
 <template>
    <div class="instgram_post">
-        <a href="#!">
+        <a href="https://www.instagram.com/teamdefinex">
             <i class="fab fa-instagram"></i>
             <img :src="instagramImg" alt="img" />
         </a>

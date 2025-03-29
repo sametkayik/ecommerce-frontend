@@ -51,7 +51,7 @@
                       <nuxt-link :to="{ path: '/product/' + item.id }">{{ item.title }}</nuxt-link>
                       <div v-if="item.color || item.size" class="variant-info">
                         <span v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></span>
-                        <span v-if="item.size">Beden: {{ item.size }}</span>
+                        <span v-if="item.size">Size: {{ item.size }}</span>
                       </div>
                     </td>
                     <td class="product-price">
