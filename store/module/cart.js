@@ -3,6 +3,7 @@ import products from '../../data/products'
 const state = {
   products: products.data,
   cart: JSON.parse(localStorage.getItem('cart')) || [],
+  couponDiscount: JSON.parse(localStorage.getItem('couponDiscount')) || 0
 }
 // getters
 const getters = {
@@ -13,13 +14,21 @@ const getters = {
     return state.cart
   },
   cartTotalAmount: (state) => {
-    return state.cart.reduce( (total, product) => {
-      return total + ( (product.price - ( product.price * product.discount / 100) ) * product.quantity)
-      }, 0 )
+    const total = state.cart.reduce((total, product) => {
+      const discountedPrice = product.price - (product.price * (product.discount || 0) / 100);
+      return total + (discountedPrice * product.quantity);
+    }, 0);
+    return Math.round(total * 100) / 100;
   }
 }
 // actions
 const actions = {
+  applyCoupon({ commit }, discount) {
+    commit('applyCoupon', discount);
+  },
+  removeCoupon({ commit }) {
+    commit('removeCoupon');
+  },
   addToCart: (context, payload) => {
     context.commit('addToCart', payload)
   },
@@ -33,6 +42,14 @@ const actions = {
 
 // mutations
 const mutations = {
+  applyCoupon(state, discount) {
+    state.couponDiscount = discount;
+    localStorage.setItem('couponDiscount', JSON.stringify(discount));
+  },
+  removeCoupon(state) {
+    state.couponDiscount = 0;
+    localStorage.removeItem('couponDiscount');
+  },
   initializeCart(state, cart) {
     state.cart = cart
   },

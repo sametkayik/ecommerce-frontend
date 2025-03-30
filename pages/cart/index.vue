@@ -50,14 +50,11 @@
                     <td class="product_name">
                       <nuxt-link :to="{ path: '/product/' + item.id }">{{ item.title }}</nuxt-link>
                       <div v-if="item.color || item.size" class="variant-info">
-                        <h5 v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></h5>
-                        <h5 v-if="item.size">Size: {{ item.size }}</h5>
+                        <span v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></span>
+                        <span v-if="item.size">Beden: {{ item.size }}</span>
                       </div>
                     </td>
-                    <td class="product-price">
-                      <h5 class="fw-bold">${{ discountedPrice(item).toFixed(2) }}</h5>
-                      <del v-if="item.discount" class="text-danger ms-2">${{ item.price.toFixed(2) }}</del>
-                    </td>
+                    <td class="product-price">${{ discountedPrice(item).toFixed(2) }}</td>
                     <td class="product_quantity">
                       <label>Quantity</label>
                       <input v-model.number="item.quantity" max="100" min="1" type="number"
@@ -82,16 +79,29 @@
               <div class="coupon_inner">
                 <p>Enter your coupon code if you have one!</p>
                 <input
+                    v-model="couponCode"
                     class="mb-2"
                     placeholder="Coupon code"
                     type="text"
+                    :disabled="couponApplied"
                 />
                 <button
+                    v-if="!couponApplied"
                     class="theme-btn-one btn-black-overlay btn_sm"
                     type="button"
+                    @click="applyCoupon"
                 >
                   Apply coupon
                 </button>
+                <button
+                    v-else
+                    class="theme-btn-one btn-black-overlay btn_sm"
+                    type="button"
+                    @click="removeCoupon"
+                >
+                  Remove coupon
+                </button>
+                <p v-if="couponError" class="text-danger mt-2">{{ couponError }}</p>
               </div>
             </div>
           </div>
@@ -103,13 +113,21 @@
                   <p>Subtotal</p>
                   <p class="cart_amount">${{ cartTotal.toFixed(2) }}</p>
                 </div>
+                <div v-if="couponApplied" class="cart_subtotal">
+                  <p>Discount ({{ couponDiscount }}%)</p>
+                  <p class="cart_amount text-danger">- ${{ discountAmount }}</p>
+                </div>
+                <div v-if="couponApplied" class="cart_subtotal" style="color:blue;">
+                  <p>Discounted Price:</p>
+                  <p class="cart_amount">${{ (cartTotal - discountAmount).toFixed(2) }}</p>
+                </div>
                 <div class="cart_subtotal">
                   <p>Shipping</p>
-                  <p class="cart_amount"><h5>Flat Rate:</h5> $25.00</p>
+                  <p class="cart_amount" style="color:orange;"> $15.00</p>
                 </div>
                 <div class="cart_subtotal">
                   <p>Total</p>
-                  <p class="cart_amount">${{ (cartTotal + 25).toFixed(2) }}</p>
+                  <p class="cart_amount" style="color:green">${{ grandTotal }}</p>
                 </div>
                 <div class="checkout_btn">
                   <nuxt-link class="theme-btn-one btn-black-overlay btn_sm" to="/my-account/checkout-1">Proceed to
@@ -134,6 +152,10 @@ export default {
   data() {
     return {
       title: "Cart",
+      couponCode: '',
+      couponApplied: false,
+      couponDiscount: 0,
+      couponError: '',
       // Breadcrumb Items Data
       breadcrumbItems: [
         {
@@ -145,6 +167,8 @@ export default {
           to: "/cart",
         },
       ],
+
+      // Product Quanity Increment/ Decrement Data
       quantity: 1,
     };
   },
@@ -154,12 +178,58 @@ export default {
       cart: "cart/cartItems",
       cartTotal: "cart/cartTotalAmount",
     }),
+    grandTotal() {
+      const shipping = 15.00;
+      const totalBeforeDiscount = this.cartTotal + shipping;
+      const discountAmount = this.couponApplied ? (totalBeforeDiscount * this.couponDiscount / 100) : 0;
+      return (totalBeforeDiscount - discountAmount).toFixed(2);
+    },
+    discountAmount() {
+      const shipping = 15.00;
+      const totalBeforeDiscount = this.cartTotal;
+      return this.couponApplied ? (totalBeforeDiscount * this.couponDiscount / 100).toFixed(2) : 0;
+    }
   },
   mounted() {
     // For scroll page top for every Route
     window.scrollTo(0, 0);
   },
   methods: {
+    async applyCoupon() {
+      if (!this.couponCode) {
+        this.couponError = 'Please enter a coupon code';
+        return;
+      }
+
+      try {
+        const response = await this.$axios.get(`https://localhost:5002/api/coupon/${this.couponCode}`);
+
+        if (response.data.isSuccess) {
+          this.$store.dispatch('cart/applyCoupon', response.data.result.discountAmount);
+          this.couponApplied = true;
+          this.couponDiscount = response.data.result.discountAmount;
+          this.couponError = '';
+
+        } else {
+          this.couponApplied = false;
+          this.couponError = 'Invalid coupon code';
+
+        }
+      } catch (error) {
+        this.couponApplied = false;
+        this.couponError = 'Error applying coupon';
+
+        console.error('Coupon error:', error);
+      }
+    },
+
+    removeCoupon() {
+      this.$store.dispatch('cart/removeCoupon');
+      this.couponApplied = false;
+      this.couponDiscount = 0;
+      this.couponCode = '';
+
+    },
     getVariantImage(item) {
       if (item.imageId && item.images) {
         const variantImage = item.images.find(img => img.image_id === item.imageId);
@@ -174,9 +244,10 @@ export default {
         qty: item.quantity
       });
     },
+
     discountedPrice(product) {
       const price = product.price - (product.price * (product.discount || 0) / 100);
-      return Math.round(price * 100) / 100;
+      return Math.round(price * 100) / 100; // 2 ondalık basamağa yuvarla
     },
     getImageUrl(path) {
       if (path.startsWith('http')) {
@@ -184,10 +255,18 @@ export default {
       }
       return require("@/assets/img/product-image/" + path);
     },
+    // Discount Price
+    discountedPrice(product) {
+      const price = product.price - (product.price * product.discount) / 100;
+      return price;
+    },
+    // For Delete/Remove Product Item
     removeCartItem: function (product) {
       this.$store.dispatch("cart/removeCartItem", product);
     },
   },
+
+  // Page head() Title, description for SEO
   head() {
     return {
       title: this.title,
@@ -211,6 +290,7 @@ export default {
   align-items: center;
   gap: 8px;
 }
+
 .color-badge {
   display: inline-block;
   width: 15px;
@@ -218,11 +298,13 @@ export default {
   border-radius: 50%;
   border: 1px solid #ddd;
 }
+
 .product_quantity input {
   width: 60px;
   padding: 5px;
   text-align: center;
 }
+
 .remove-btn {
   border: none;
   cursor: pointer;

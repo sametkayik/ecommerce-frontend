@@ -165,17 +165,27 @@
                     </tr>
                     </tbody>
                     <tfoot>
-                    <tr>
-                      <th>Sub Total</th>
-                      <td>${{ subtotal.toFixed(2) }}</td>
+                    <tr v-if="couponDiscount">
+                      <th>{{ couponDiscount }}% Discount</th>
+                      <td style="color:red;">-{{ (subtotal * (couponDiscount / 100)).toFixed(2) }}</td>
                     </tr>
+                    <<tr>
+                      <th>Sub Total</th>
+                      <td>
+                        <span style="color:green;">${{ (subtotal - (subtotal * (couponDiscount / 100))).toFixed(2) }}</span>
+                        <span v-if="couponDiscount" style="color:gray; margin-left: 5px;">
+                          <del>${{ subtotal.toFixed(2) }}</del>
+                        </span>
+                      </td>
+                    </tr>
+
                     <tr>
                       <th>Shipping</th>
-                      <td>${{ shipping.toFixed(2) }}</td>
+                      <td style="color:orange;">${{ shipping.toFixed(2) }}</td>
                     </tr>
                     <tr>
-                      <th>Total</th>
-                      <td>${{ total.toFixed(2) }}</td>
+                      <th>Total Price</th>
+                      <td style="color:green;">${{ total.toFixed(2) }}</td>
                     </tr>
                     </tfoot>
                   </table>
@@ -287,8 +297,12 @@ export default {
       // Kargo ücreti hesaplaması
       return 15.00; // Örnek sabit kargo ücreti
     },
+    couponDiscount() {
+      return JSON.parse(localStorage.getItem('couponDiscount')) || 0;
+    },
     total() {
-      return this.subtotal + this.shipping;
+      const discountAmount = this.subtotal * (this.couponDiscount / 100);
+      return this.subtotal - discountAmount + this.shipping;
     }
   },
   methods: {
