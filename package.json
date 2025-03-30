@@ -9,6 +9,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.21.0",
+    "@cloudinary/vue": "^1.13.1",
     "@microsoft/signalr": "^8.0.7",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",

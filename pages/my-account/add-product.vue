@@ -41,6 +41,14 @@
                 <div class="row">
                   <!-- Product Images -->
                   <div class="col-lg-12">
+                    <div class="image-input">
+                      <img :src="imageUrl || require('@/assets/img/product-image/1.png')" class="image-preview" alt="Product Image">
+                      <input type="file" accept="image/*" id="imageInput" @change="uploadImage">
+                      <label for="imageInput" class="image-button">
+                        <i class="far fa-image"></i>Choose image</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
                     <div class="fotm-group">
                       <label for="product_image_url">Product Image URL</label>
                       <input id="product_image_url" v-model="imageUrlInput" class="form-control"
@@ -74,16 +82,16 @@
                   <!-- Categories & Tags -->
                   <div class="col-lg-6">
                     <div class="fotm-group">
-                      <label for="product_category">Category*</label>
+                      <label for="product_category">Category</label>
                       <input id="product_category" v-model="product.category" class="form-control"
-                             placeholder="Category" type="text" required>
+                             placeholder="Category" type="text">
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="fotm-group">
-                      <label for="product_brand">Brand*</label>
+                      <label for="product_brand">Brand</label>
                       <input id="product_brand" v-model="product.brand" class="form-control"
-                             placeholder="Brand" type="text" required>
+                             placeholder="Brand" type="text">
                     </div>
                   </div>
                   <div class="col-lg-12">
@@ -97,9 +105,9 @@
                   <!-- Stock & Status -->
                   <div class="col-lg-4">
                     <div class="fotm-group">
-                      <label for="available_stock">Stock Quantity*</label>
+                      <label for="available_stock">Stock Quantity</label>
                       <input id="available_stock" v-model.number="product.stock" class="form-control"
-                             placeholder="0" type="number" min="0" required>
+                             placeholder="0" type="number" min="0">
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -158,11 +166,12 @@
                         </div>
                         <div class="row mt-2">
                           <div class="col-lg-12">
-                            <div class="fotm-group">
-                              <label>Variant Image URL</label>
-                              <input v-model="variant.imageUrl" class="form-control"
-                                     placeholder="https://example.com/variant.jpg" type="text"
-                                     @input="handleVariantImageUrl(index)">
+                            <div class="image-input">
+                              <img :src="variant.image || require('@/assets/img/product-image/1.png')" class="image-preview" alt="Variant Image">
+                              <input type="file" accept="image/*" :id="'variantImage' + index" @change="uploadVariantImage($event, index)">
+                              <label :for="'variantImage' + index" class="image-button">
+                                <i class="far fa-image"></i>Choose Variant Image
+                              </label>
                             </div>
                           </div>
                         </div>
@@ -190,8 +199,7 @@
 </template>
 
 <script>
-import InstagramArea from '~/components/instagram/InstagramArea.vue'
-
+import InstagramArea from '~/components/instagram/InstagramArea';
 export default {
   name: 'AddProduct',
   components: {
@@ -199,71 +207,82 @@ export default {
   },
   data() {
     return {
-      imageUrlInput: '',
       title: 'Add Product',
-      tagsInput: '',
-      product: {
-        productId: 0,
-        title: '',
-        price: 0,
-        description: '',
-        category: '',
-        brand: '',
-        collection: [],
-        hot: true,
-        discount: 0,
-        stock: 0,
-        new: true,
-        rating: 0,
-        tags: [],
-        variants: [],
-        images: []
-      },
       breadcrumbItems: [
-        {
-          text: 'Home',
-          to: '/'
-        },
-        {
-          text: 'Add Product',
-        }
-      ]
-    }
+        { text: 'Home', to: '/' },
+        { text: 'Add Product' }
+      ],
+      imageUrl: '',
+      product: {
+        title: '',
+        images: [],
+        variants: [{
+          sku: 'SKU-0',
+          size: 'XS',
+          color: 'Purple',
+          image: null
+        }]
+      },
+      imageUrlInput: '',
+      tagsInput: ''
+    };
+  },
+  mounted() {
+    window.scrollTo(0, 0);
   },
   methods: {
-    handleVariantImageUrl(index) {
-      const url = this.product.variants[index].imageUrl.trim();
-      const validUrl = /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(url); // simple URL check
-      if (validUrl) {
-        this.product.variants[index].image = {
-          imageId: 0,
-          id: 0,
-          src: url,
-          alt: this.product.variants[index].sku || 'Variant Image',
-          variants: []
-        };
-      } else {
-        // Handle invalid URL
-        this.$bvToast.toast('Invalid image URL', {
-          title: 'Error',
-          variant: 'danger',
-          solid: true
+    async uploadVariantImage(event, index) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'smtkyk-preset');
+
+      try {
+        const response = await fetch('https://api.cloudinary.com/v1_1/dfbubiipy/image/upload', {
+          method: 'POST',
+          body: formData
         });
+
+        const data = await response.json();
+        this.product.variants[index].image = data.secure_url;
+        console.log('Variant Image URL:', data.secure_url);
+      } catch (error) {
+        console.error('Variant image upload failed:', error);
       }
     },
-    addVariant() {
-      this.product.variants.push({
-        variantId: 0,
-        id: 0,
-        sku: '',
-        size: '',
-        color: '',
-        image: null
-      });
+
+    async uploadImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'smtkyk-preset');
+
+      try {
+        const response = await fetch('https://api.cloudinary.com/v1_1/dfbubiipy/image/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+        this.imageUrl = data.secure_url;
+        console.log('Uploaded Image URL:', this.imageUrl);
+
+        this.product.images = [{
+          imageId: 0,
+          id: 0,
+          alt: this.product.title || 'Product image',
+          src: this.imageUrl,
+          variantIds: []
+        }];
+      } catch (error) {
+        console.error('Image upload failed:', error);
+      }
     },
-    removeVariant(index) {
-      this.product.variants.splice(index, 1);
-    },
+
     handleImageUrl() {
       if (this.imageUrlInput.trim() !== '') {
         this.product.images = [{
@@ -275,20 +294,31 @@ export default {
         }];
       }
     },
+    addVariant() {
+      this.product.variants.push({
+        sku: `SKU-${this.product.variants.length}`,
+        size: 'XXL',
+        color: 'Black',
+        image: null
+      });
+    },
+
+    removeVariant(index) {
+      this.product.variants.splice(index, 1);
+    },
+
     async submitProduct() {
       try {
         this.product.tags = this.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
 
-        const cleanedVariants = this.product.variants.map(variant => ({
-          color: variant.color,
-          size: variant.size,
-          sku: variant.sku,
-          image: variant.image ? { src: variant.image.src, alt: variant.image.alt } : null
-        }));
-
         const payload = {
           ...this.product,
-          variants: cleanedVariants,
+          variants: this.product.variants.map(variant => ({
+            sku: variant.sku,
+            size: variant.size,
+            color: variant.color,
+            image: variant.image || null
+          })),
           images: this.product.images.map(image => ({
             src: image.src,
             alt: image.alt || this.product.title
@@ -301,6 +331,7 @@ export default {
           throw new Error('Product creation failed - no product returned');
         }
 
+        await this.$store.dispatch('products/fetchProducts');
         this.$bvToast.toast('Product created successfully!', {
           title: 'Success',
           variant: 'success',
@@ -310,7 +341,7 @@ export default {
         this.$router.push('/');
       } catch (error) {
         console.error('Error creating product:', error);
-
+        
         let errorMessage = 'Failed to create product. Please try again.';
         if (error.response) {
           errorMessage = error.response.data?.message || errorMessage;
@@ -326,11 +357,6 @@ export default {
       }
     }
   },
-  mounted() {
-    window.scrollTo(0, 0);
-
-    this.addVariant();
-  },
   head() {
     return {
       title: this.title,
@@ -341,7 +367,7 @@ export default {
           content: 'Add Product Vendor Dashboard - AndShop Ecommerce Vue js, Nuxt js Template'
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
