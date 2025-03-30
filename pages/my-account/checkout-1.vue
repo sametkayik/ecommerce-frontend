@@ -158,8 +158,8 @@
                         </div>
                       </td>
                       <td>${{
-                          (item.price - (item.price * item.discount / 100)) *
-                          item.quantity
+                          ((item.price - (item.price * item.discount / 100)) *
+                          item.quantity).toFixed(2)
                         }}
                       </td>
                     </tr>

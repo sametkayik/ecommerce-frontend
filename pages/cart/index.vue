@@ -51,7 +51,7 @@
                       <nuxt-link :to="{ path: '/product/' + item.id }">{{ item.title }}</nuxt-link>
                       <div v-if="item.color || item.size" class="variant-info">
                         <span v-if="item.color" :style="{ backgroundColor: item.color }" class="color-badge"></span>
-                        <span v-if="item.size">Beden: {{ item.size }}</span>
+                        <span v-if="item.size">Size: {{ item.size }}</span>
                       </div>
                     </td>
                     <td class="product-price">${{ discountedPrice(item).toFixed(2) }}</td>
@@ -244,7 +244,6 @@ export default {
         qty: item.quantity
       });
     },
-
     discountedPrice(product) {
       const price = product.price - (product.price * (product.discount || 0) / 100);
       return Math.round(price * 100) / 100; // 2 ondalık basamağa yuvarla
@@ -254,11 +253,6 @@ export default {
         return path;
       }
       return require("@/assets/img/product-image/" + path);
-    },
-    // Discount Price
-    discountedPrice(product) {
-      const price = product.price - (product.price * product.discount) / 100;
-      return price;
     },
     // For Delete/Remove Product Item
     removeCartItem: function (product) {
