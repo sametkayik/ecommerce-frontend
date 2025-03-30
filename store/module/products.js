@@ -123,7 +123,7 @@ const actions = {
                 }))
             };
 
-            const response = await this.$axios.post('https://localhost:44390/api/products', payload);
+            const response = await this.$axios.post('http://localhost:44390/api/products', payload);
 
             if (!response.data) {
                 throw new Error('Empty response from server');
@@ -173,7 +173,7 @@ const actions = {
     },
     async fetchProducts({commit}) {
         try {
-            const response = await fetch('https://localhost:5002/api/products');
+            const response = await fetch('http://localhost:44390/api/products');
             const {result} = await response.json();
             const transformedProducts = result.map(product => ({
                 id: product.productId,

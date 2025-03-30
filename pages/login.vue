@@ -119,7 +119,7 @@ export default {
         formData.append('password', this.user.password)
         formData.append('scope', 'DefineX')
 
-        const response = await this.$axios.post('https://localhost:5002/api/auth/login', formData, {
+        const response = await this.$axios.post('http://localhost:44365/connect/token', formData, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
           }

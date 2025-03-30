@@ -202,7 +202,7 @@ export default {
       }
 
       try {
-        const response = await this.$axios.get(`https://localhost:5002/api/coupon/${this.couponCode}`);
+        const response = await this.$axios.get(`http://localhost:44393/api/coupon/${this.couponCode}`);
 
         if (response.data.isSuccess) {
           this.$store.dispatch('cart/applyCoupon', response.data.result.discountAmount);
