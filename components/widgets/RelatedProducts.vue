@@ -7,7 +7,7 @@
                     <div class="col-lg-12">
                         <div class="center_heading">
                             <h2>You Might Also Like</h2>
-                            <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                            <p>Why not?</p>
                         </div>
                     </div>
                 </div>
